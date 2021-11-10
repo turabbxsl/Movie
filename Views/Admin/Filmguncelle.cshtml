@@ -1,0 +1,100 @@
+﻿@model Filmsayt.Models.tbl_kinolar
+@{
+    ViewBag.Title = "Filmguncelle";
+    Layout = "~/Views/Shared/Adminlayout.cshtml";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>tbl_kinolar</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.id)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.kinoadi, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.kinoadi, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.kinoadi, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <br />
+    <br />
+
+    <div class="form-group">
+        <label class="col-lg-2 control-label">Kategoriya :</label>
+        <div class="col-lg-10">
+            <select class="form-control m-bot15" name="kategoriyaid">
+                @foreach (var kategoriya in ViewBag.Kategoriyalar)
+                {
+                    <option value="@kategoriya.id">@kategoriya.kategoriyaadi</option>
+                }
+            </select>
+        </div>
+    </div>
+    <br />
+    <br />
+    <br />
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.kinoaciqlama, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.kinoaciqlama, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.kinoaciqlama, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <br />
+    <br />
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.oyuncuadi, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.oyuncuadi, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.oyuncuadi, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <br />
+    <br />
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.yonetmenadi, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.yonetmenadi, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.yonetmenadi, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <br />
+    <br />
+    <div class="form-group">
+        @Html.LabelFor(model => model.tarix, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.tarix, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.tarix, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <br />
+    <br />
+    <div class="form-group">
+        @Html.LabelFor(model => model.reyting, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.reyting, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.reyting, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <br />
+    <br />
+
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Yadda Saxla" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}

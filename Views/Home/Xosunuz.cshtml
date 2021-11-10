@@ -1,0 +1,166 @@
+﻿@model IEnumerable<Filmsayt.Models.tbl_kinolar>
+
+@{
+    ViewBag.Title = "Xosunuz";
+    Layout = "~/Views/Shared/SaytLayout.cshtml";
+}
+
+
+<div class="page-single movie_list">
+    <div class="container">
+        <div class="row ipad-width2">
+
+            <div class="topbar-filter">
+                <p>Toplam   <span> @Model.Count() </span> Film Tapıldı</p>
+
+                <a href="movielist.html" class="list"><i class="ion-ios-list-outline active"></i></a>
+                <a href="moviegrid.html" class="grid"><i class="ion-grid"></i></a>
+            </div>
+            <div class="flex-wrap-movielist">
+                @foreach (var item in Model)
+                {
+                    <br />
+                    <figure class="snip1321">
+                        <img src="@item.tbl_resm1.FirstOrDefault(x => x.varsayilan == true).boyukolculu" alt="sq-sample28" />
+                        <figcaption>
+
+                            <h4>@item.kinoadi</h4>
+                            <h2 style="font-family:monospace">Ətraflı Bax</h2>
+                        </figcaption><a href="/Home/Details/@item.id"></a>
+                    </figure>
+                   
+                    <br />
+                    <br />
+                }
+                </div>
+
+                <div class="topbar-filter">
+                    <label>Filmləri Göstər</label>
+                    <select>
+                        <option value="range">5 Film</option>
+                        <option value="saab">10 Film</option>
+                    </select>
+
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-12 col-xs-12">
+                <div class="sidebar">
+
+
+                    <div style="margin-right:30px;" class="sb-facebook sb-it">
+                        <h4 class="sb-title">Instagramda Tap</h4>
+                        <img src="~/Content/Filmresimler/asasasasa.jpg" data-src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Ftemplatespoint.net%2F%3Ffref%3Dts&tabs=timeline&width=340&height=315px&small_header=true&adapt_container_width=false&hide_cover=false&show_facepile=true&appId" height="315" style="width:100%;border:none;overflow:hidden"></img>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    figure.snip1321 {
+        font-family: 'Raleway', Arial, sans-serif;
+        position: relative;
+        overflow: hidden;
+        margin: 10px;
+        min-width: 230px;
+        max-width: 315px;
+        width: 100%;
+        color: #000000;
+        text-align: center;
+        -webkit-perspective: 50em;
+        perspective: 50em;
+    }
+
+        figure.snip1321 * {
+            -webkit-box-sizing: padding-box;
+            box-sizing: padding-box;
+            -webkit-transition: all 0.2s ease-out;
+            transition: all 0.2s ease-out;
+        }
+
+        figure.snip1321 img {
+            max-width: 100%;
+            vertical-align: top;
+        }
+
+        figure.snip1321 figcaption {
+            top: 50%;
+            left: 20px;
+            right: 20px;
+            position: absolute;
+            opacity: 0;
+            z-index: 1;
+        }
+
+        figure.snip1321 h2,
+        figure.snip1321 h4 {
+            margin: 0;
+        }
+
+        figure.snip1321 h2 {
+            font-weight: 600;
+        }
+
+        figure.snip1321 h4 {
+            font-weight: 400;
+            text-transform: uppercase;
+        }
+
+        figure.snip1321 i {
+            font-size: 32px;
+        }
+
+        figure.snip1321:after {
+            background-color: #ffffff;
+            position: absolute;
+            content: "";
+            display: block;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            bottom: 20px;
+            -webkit-transition: all 0.4s ease-in-out;
+            transition: all 0.4s ease-in-out;
+            -webkit-transform: rotateX(-90deg);
+            transform: rotateX(-90deg);
+            -webkit-transform-origin: 50% 50%;
+            -ms-transform-origin: 50% 50%;
+            transform-origin: 50% 50%;
+            opacity: 0;
+        }
+
+        figure.snip1321 a {
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            position: absolute;
+            z-index: 1;
+        }
+
+        figure.snip1321:hover figcaption,
+        figure.snip1321.hover figcaption {
+            -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+            opacity: 1;
+            -webkit-transition-delay: 0.2s;
+            transition-delay: 0.2s;
+        }
+
+        figure.snip1321:hover:after,
+        figure.snip1321.hover:after {
+            -webkit-transform: rotateX(0);
+            transform: rotateX(0);
+            opacity: 0.9;
+        }
+
+</style>
+<script>
+    $(".hover").mouseleave(
+        function () {
+            $(this).removeClass("hover");
+        }
+    );
+</script>

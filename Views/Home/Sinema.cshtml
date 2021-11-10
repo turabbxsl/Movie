@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Filmsayt.Models.tbl_kinolar>
+
+<div class="videos">
+    <div class="slider-for-2 video-ft">
+        <div>
+            <iframe class="item-video" src="https://www.youtube.com/embed/zSWdZVtXT7E"></iframe>
+        </div>
+        <div>
+            <iframe class="item-video" src="https://www.youtube.com/embed/sg81Lts5kYY"></iframe>
+        </div>
+        <div>
+            <iframe class="item-video" src="https://www.youtube.com/embed/YoHD9XEInc0"></iframe>
+        </div>
+        <div>
+            <iframe class="item-video" src="https://www.youtube.com/embed/HDWylEQSwFo"></iframe>
+        </div>
+        <div>
+            <iframe class="item-video" src="https://www.youtube.com/embed/zb3dm_72j6I"></iframe>
+        </div>
+        <div>
+            <iframe class="item-video" src="https://www.youtube.com/embed/9n2B5WW4SKk"></iframe>
+        </div>
+
+
+    </div>
+    <div class="slider-nav-2 thumb-ft">
+        @foreach (var item in Model)
+        {
+            <div class="item">
+                <div class="trailer-img">
+                    <a href="/Home/Details/@item.id">
+                        <img src="@item.tbl_resm1.FirstOrDefault(x => x.varsayilan == true).kicikolculu" alt="photo by Barn Images" width="4096" height="2737">
+                    </a>
+                </div>
+                <div class="trailer-infor">
+                    <h4 class="desc">@item.kinoadi</h4>
+                    <p>2:30</p>
+                </div>
+            </div>
+        }
+    </div>
+</div>

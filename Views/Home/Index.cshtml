@@ -1,0 +1,961 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+
+}
+<meta charset="UTF-8">
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta name="author" content="">
+<link rel="profile" href="#">
+<!--Google Font-->
+<link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Dosis:400,700,500|Nunito:300,400,600' />
+<!-- Mobile specific meta -->
+<meta name=viewport content="width=device-width, initial-scale=1">
+<meta name="format-detection" content="telephone-no">
+<!-- CSS files -->
+<link rel="stylesheet" href="~/Content/Film-Review-Movie-Database/css/plugins.css">
+<link rel="stylesheet" href="~/Content/Film-Review-Movie-Database/css/style.css">
+<link href="~/Content/saa.css" rel="stylesheet" />
+<header class="ht-header">
+
+
+    @*<div id=gazze name=gazze style="visibility:visible; position:absolute; left:0px; top:0px; z-index:2; background:#000000; width:100%; height:100%; text-align:center;">
+        <img src="~/Content/images/11.jpg" alt="" title="Lanetle Kınıyoruz."></img>
+    </div>
+     
+    <script LANGUAGE=JavaScript>
+
+        function gizle() {
+            document.getElementById("gazze").style.visibility = "hidden";
+        }
+        window.setTimeout("gizle()", 10000);
+//–>
+    </script>*@
+
+    <div class="container">
+        @{
+            Html.RenderAction("Navigasiya", "Home");
+        }
+
+
+    </div>
+</header>
+
+
+<body>
+
+    
+       
+        <div id="popUp">
+            <div id="close" class="close"><i class="fa fa-times"></i></div>
+            <div id="new"><span>Yeni!</span></div>
+            <h2>Film Saytıma Xoş Gəldin.Saytıma Qeydiyyatda Deyilsənsə Elə İndi Qeydiyyat Ol.</h2>
+            <br>
+          
+        </div>
+        <div id="plus"><span>NEW<br>&nbsp;&nbsp;<i style="margin-top:10px;" class="fa fa-plus"></i></span></div>
+ 
+    <style>
+     
+
+#popUp {
+  position: fixed;
+  max-width: 190px;
+  height: 180px;
+  background: rgba(236, 240, 241, 1);
+  border: 7px solid #fff;
+  bottom: 0;
+  margin-left: 0;
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  transition: all 1s ease;
+}
+
+#new span {
+  background: #fff;
+  position: absolute;
+  color: #1c8dc4;
+  padding: 4px 10px;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin-top: -5px;
+}
+
+#popUp .close {
+  color: #464646;
+  right: 8px;
+  top: 0px;
+  position: absolute;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+#popUp h2 {
+  font-size: 17px;
+  color: #464646;
+  line-height: 24px;
+  font-weight: 400;
+  text-align: center;
+  margin-top: 40px;
+  padding: 0 20px;
+}
+
+
+
+a.button {
+  margin: 0 auto;
+  text-align: center;
+  right: 0;
+  left: 0;
+  position: absolute;
+  width: 120px;
+  font-size: 15px;
+  color: #fff;
+  border-bottom: 2px solid #18729f;
+  background: #1c8dc4;
+  border-radius: 4px;
+  padding: 8px 0;
+}
+
+#plus {
+  position: fixed;
+  color: #fff;
+  bottom: 15%;
+  font-size: 15px;
+  margin-left: -425px;
+  -webkit-transition: all 1.25s ease;
+  -moz-transition: all 1.25s ease;
+  -o-transition: all 1.25s ease;
+  transition: all 1.25s ease;
+  cursor: pointer;
+  text-align: left;
+  letter-spacing: 1px;
+}
+
+#plus span {
+  position: absolute;
+  margin-top: 38px;
+  left: 4px;
+}
+
+#plus::after {
+  content: '';
+  display: block;
+  display: relative;
+  border-top: 55px solid transparent;
+  border-bottom: 55px solid transparent;
+  border-left: 55px solid #1c8dc4;
+}
+
+media all and (max-width: 900px) {
+  #popUp {
+    margin-left: -425px;
+  }
+  #plus {
+    margin-left: 0px;
+  }
+}
+    </style>
+
+    <script>
+        $(document).scroll(function () {
+            var scroll = $(this).scrollTop();
+            if (scroll >= 150) {
+                $("#popUp").css("margin-left", "-425px");
+                $("#plus").css("margin-left", "0px");
+            }
+        });
+
+        $("#plus").click(function () {
+            $("#popUp").css("margin-left", "0px");
+            $("#plus").css("margin-left", "-425px");
+        });
+
+        $("#close").click(function () {
+            $("#popUp").css("margin-left", "-425px");
+            $("#plus").css("margin-left", "0px");
+        });
+    </script>
+
+
+
+    <div class="slider movie-items">
+        <div class="container">
+            <div class="row">
+                <div class="social-link">
+                    <p>Bizi Izle: </p>
+                    <a href="#"><i class="ion-social-facebook"></i></a>
+                    <a href="#"><i class="ion-social-twitter"></i></a>
+                    <a href="#"><i class="ion-social-googleplus"></i></a>
+                    <a href="#"><i class="ion-social-youtube"></i></a>
+                </div>
+                @{
+                    Html.RenderAction("multislider", "Home");
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="movie-items">
+        <div class="container">
+            <div class="row ipad-width">
+                <div class="col-md-8">
+
+                    <div class="tabs">
+                        @{
+                            Html.RenderAction("Basliqlar", "Home");
+                        }
+
+                        <div class="tab-content">
+
+                            @{
+                                Html.RenderAction("Tezlikle", "Home");
+                            }
+
+                            @{
+                                Html.RenderAction("Baxilan", "Home");
+                            }
+
+
+
+                        </div>
+                    </div>
+
+                    <div class="tabs">
+                        @{
+                            Html.RenderAction("Basliqlar2", "Home");
+                        }
+
+                        <div class="tab-content">
+                            @{
+                                Html.RenderAction("Meshur");
+                            }
+                            @{
+                                Html.RenderAction("imdb");
+                            }
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="sidebar">
+
+                        <div class="celebrities">
+                            <h4 class="sb-title">Spotlight Celebrities</h4>
+                            <div class="celeb-item">
+                                <a href="#"><img src="~/Content/Film-Review-Movie-Database/images/uploads/ava1.jpg" alt="" width="70" height="70"></a>
+                                <div class="celeb-author">
+                                    <h6><a href="#">Samuel N. Jack</a></h6>
+                                    <span>Actor</span>
+                                </div>
+                            </div>
+                            <div class="celeb-item">
+                                <a href="#"><img src="~/Content/Film-Review-Movie-Database/images/uploads/ava2.jpg" alt="" width="70" height="70"></a>
+                                <div class="celeb-author">
+                                    <h6><a href="#">Benjamin Carroll</a></h6>
+                                    <span>Actor</span>
+                                </div>
+                            </div>
+                            <div class="celeb-item">
+                                <a href="#"><img src="~/Content/Film-Review-Movie-Database/images/uploads/ava3.jpg" alt="" width="70" height="70"></a>
+                                <div class="celeb-author">
+                                    <h6><a href="#">Beverly Griffin</a></h6>
+                                    <span>Actor</span>
+                                </div>
+                            </div>
+                            <div class="celeb-item">
+                                <a href="#"><img src="~/Content/Film-Review-Movie-Database/images/uploads/ava4.jpg" alt="" width="70" height="70"></a>
+                                <div class="celeb-author">
+                                    <h6><a href="#">Justin Weaver</a></h6>
+                                    <span>Actor</span>
+                                </div>
+                            </div>
+                            <a href="#" class="btn">See all celebrities<i class="ion-ios-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="trailers">
+        <div class="container">
+            <div class="row ipad-width">
+                <div class="col-md-12">
+                    <div class="title-hd">
+                        <h2>Sinemada Olanlar</h2>
+
+                    </div>
+                    @{
+                        Html.RenderAction("Sinema");
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="background-color:#020d18;">
+        @{
+            Html.RenderAction("Slider", "Home");
+        }
+    </div>
+
+    <div class="latestnew">
+        <div class="container">
+            <div class="row ipad-width">
+                <div class="col-md-8">
+
+                    <div class="title-hd">
+                        <h2>Son Xəbərlər</h2>
+                    </div>
+                    <div class="tabs">
+                        <div class="tab-content">
+                            <div id="tab31" class="tab active">
+                                <div class="row">
+                                    <div class="blog-item-style-1">
+                                        <img src="~/Content/Film-Review-Movie-Database/images/uploads/blog-it1.jpg" alt="" width="170" height="250">
+                                        <div class="blog-it-infor">
+                                            <h3><a href="#">Brie Larson, Amazon filmindəki ilk qadın ağ ev namizədi Victoria Woodull rolunu oynayacaq</a></h3>
+                                            <span class="time">13 saat əvvəl</span>
+                                            <p style="font-size:15px;">Eksklüziv: Amazon Studios, Victoria Woodhull'u əldə etdi, Oscar qazanan Otaq ulduzu Brie Larson'un istehsalı və ABŞ prezidentliyinə ilk qadın namizəd rolunu oynadı. Amazon onu meydança paketi müqaviləsində satın aldı.Eksklüziv: Amazon Studios, Victoria Woodhull'u əldə etdi, Oscar qazanan Otaq ulduzu Brie Larson'un istehsalı və ABŞ prezidentliyinə ilk qadın namizəd rolunu oynadı. Amazon onu meydança paketi müqaviləsində satın aldı.Eksklüziv: Amazon Studios, Victoria Woodhull'u əldə etdi, Oscar qazanan Otaq ulduzu Brie Larson'un istehsalı və ABŞ prezidentliyinə ilk qadın namizəd rolunu oynadı. Amazon onu meydança paketi müqaviləsində satın aldı</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-4">
+                    <div class="sidebar">
+                        <div class="sb-facebook sb-it">
+                            <h4 class="sb-title">Məni Dəstək Ol</h4>
+                            <a href="https://www.instagram.com/?hl=tr"><img src="~/Content/Filmresimler/asasasasa.jpg" width="300" height="315" style="border:none;overflow:hidden" /></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<footer class="ht-footer">
+    <div class="container">
+        <div class="flex-parent-ft">
+            <div class="flex-child-ft item1">
+                <h2 style="color:white">TURABBL</h2>
+                <br />
+                <br />
+                <p>
+                    Sabunçu R,Maştağa Q.<br>
+                    Azərbaycan,Qəbələ
+                </p>
+                <p>Call us: <a href="#">+(994)70-306-70-50</a></p>
+            </div>
+            <div class="flex-child-ft item2">
+                <h4>Qaynaqlar</h4>
+                <ul>
+                    <li><a href="#">Haqqımızda</a></li>
+                    <li><a href="#">Əlaqə</a></li>
+                    <li><a href="#">Kömək Et</a></li>
+
+                </ul>
+            </div>
+            <div class="flex-child-ft item3">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">İstifadə Qaydaları</a></li>
+                    <li><a href="#">Gizlilik Politikası</a></li>
+                    <li><a href="#">Təhlükəsizlik</a></li>
+                </ul>
+            </div>
+            <div class="flex-child-ft item4">
+                <h4 style="margin-left:50px;">Hesab</h4>
+                <ul>
+                    @if (Session["username"] != null)
+                    {
+                        <li><a href="/Home/Profilim">Mənim Hesabım</a></li>
+                        <li><a href="/Home/Profilpassword">Şifrəni Dəyiş</a></li>
+                        <li><a href="#">İstifadəçi Təlimatı</a></li>
+                    }
+                    else
+                    {
+                        <div class="section">
+                            <div class="section__item">
+
+                                <div class="section__box">
+                                    <a href="/Home/Giris">
+                                        <button class="r-button ai-element ai-element_type1 ai-element5">
+                                            <span class="ai-element__label" style="width:130px;">Giriş Et</span>
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                </ul>
+            </div>
+
+        </div>
+    </div>
+    <div class="ft-copyright">
+
+        <div class="backtotop">
+            <p><a href="#" id="back-to-top">Yuxarıya Qayld  <i class="ion-ios-arrow-thin-up"></i></a></p>
+        </div>
+    </div>
+</footer>
+
+
+<div>
+
+</div>
+
+
+<script src="~/Content/Film-Review-Movie-Database/js/jquery.js"></script>
+<script src="~/Content/Film-Review-Movie-Database/js/plugins.js"></script>
+<script src="~/Content/Film-Review-Movie-Database/js/plugins2.js"></script>
+<script src="~/Content/Film-Review-Movie-Database/js/custom.js"></script>
+
+
+<style>
+    
+    ::-webkit-scrollbar {
+        width:9px;
+        
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: linear-gradient(transparent,#00c6ff);
+        border-radius: 6px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(transparent,#27768d);
+        border-radius: 6px;
+    }
+
+</style>
+
+
+<style>
+
+    .r-button {
+        --uirButtonBackgroundColor: var(--rButtonBackgroundColor, transparent);
+        --uirButtonPadding: var(--rButtonPadding, var(--rButtonPaddingTop, 0) var(--rButtonPaddingRight, 0) var(--rButtonPaddingBottom, 0) var(--rButtonPaddingLeft, 0));
+        --uirButtonBorderWidth: var(--rButtonBorderWidth, 0);
+        --uirButtonBorderStyle: var(--rButtonBorderWidth, solid);
+        --uirButtonBorderColor: var(--rButtonBorderColor, currentColor);
+        --uirButtonFontFamily: var(--rButtonFontFamily, inherit);
+        --uirButtonFontSize: var(--rButtonFontSize, inherit);
+        --uirButtonColor: var(--rButtonColor);
+        background-color: var(--uirButtonBackgroundColor);
+        padding: var(--uirButtonPadding);
+        border-width: var(--uirButtonBorderWidth);
+        border-style: var(--uirButtonBorderStyle);
+        border-color: var(--uirButtonBorderColor);
+        cursor: pointer;
+        font-family: var(--uirButtonFontFamily);
+        font-size: var(--uirButtonFontSize);
+    }
+
+        .r-button::-moz-focus-inner,
+        .r-button[type="button"]::-moz-focus-inner,
+        .r-button[type="reset"]::-moz-focus-inner,
+        .r-button[type="submit"]::-moz-focus-inner {
+            /* Remove the inner border and padding in Firefox. */
+            border-style: none;
+            padding: 0;
+        }
+
+    /* The component will reset browser's styles of link */
+
+    .r-link {
+        --uirLinkDisplay: var(--rLinkDisplay, inline-flex);
+        --uirLinkTextColor: var(--rLinkTextColor);
+        --uirLinkTextDecoration: var(--rLinkTextDecoration, none);
+        display: var(--uirLinkDisplay) !important;
+        color: var(--uirLinkTextColor) !important;
+        text-decoration: var(--uirLinkTextDecoration) !important;
+    }
+
+    /*
+    =====
+    CORE STYLES
+    =====
+    */
+
+    .ai-element {
+        --uiaiElementDisplay: var(--aiElementDisplay, inline-flex);
+        --uiaiElementPadding: var(--aiElementPadding, var(--aiElementPaddingTop, 0) var(--aiElementPaddingRight, 0) var(--aiElementPaddingBottom, 0) var(--aiElementPaddingLeft, 0));
+        --uiaiElementColor: var(--aiElementColor);
+        display: var(--uiaiElementDisplay);
+        position: relative;
+        overflow: hidden;
+    }
+
+    a.ai-element {
+        padding: var(--uiaiElementPadding);
+    }
+
+    button.ai-element {
+        --rButtonPadding: var(--uiaiElementPadding);
+    }
+
+    .ai-element__label {
+        color: var(--uiaiElementColor);
+    }
+
+    /*
+    Styles of elements with the border on all sides
+    */
+
+    .ai-element_type1 {
+        --uiaiElementLineWeight: var(--aiElementLineWeight, 2px);
+        --uiaiElementLineColor: var(--aiElementLineColor, #000);
+    }
+
+        .ai-element_type1::before,
+        .ai-element_type1::after {
+            width: 100%;
+            height: var(--uiaiElementLineWeight);
+            left: 0;
+        }
+
+        .ai-element_type1::before {
+            top: 0;
+        }
+
+        .ai-element_type1::after {
+            bottom: 0;
+        }
+
+        .ai-element_type1 .ai-element__label::before,
+        .ai-element_type1 .ai-element__label::after {
+            width: var(--uiaiElementLineWeight);
+            height: 100%;
+            top: 0;
+        }
+
+        .ai-element_type1 .ai-element__label::before {
+            left: 0;
+        }
+
+        .ai-element_type1 .ai-element__label::after {
+            right: 0;
+        }
+
+        .ai-element_type1::before,
+        .ai-element_type1::after,
+        .ai-element_type1 .ai-element__label::before,
+        .ai-element_type1 .ai-element__label::after {
+            content: "";
+            background-color: var(--uiaiElementLineColor);
+            position: absolute;
+            opacity: 1;
+            will-change: transform, opacity;
+            transition-property: transform, opacity;
+        }
+
+        .ai-element_type1:hover::before,
+        .ai-element_type1:hover::after,
+        .ai-element_type1:hover .ai-element__label::before,
+        .ai-element_type1:hover .ai-element__label::after {
+            opacity: 0;
+        }
+
+    /*
+    Styles of elements with the bottom border
+    */
+
+    .ai-element_type2 {
+        --uiaiElementLineWeight: var(--aiElementLineWeight, 2px);
+        --uiaiElementLineColor: var(--aiElementLineColor, #000);
+        --aiElementPaddingBottom: var(--uiaiElementLineWeight);
+        position: relative;
+    }
+
+        .ai-element_type2::after {
+            content: "";
+            width: 100%;
+            height: var(--uiaiElementLineWeight);
+            background-color: var(--uiaiElementLineColor);
+            position: absolute;
+            left: 0;
+            bottom: 0;
+        }
+
+    /*
+    Styles of elements with background
+    */
+
+    .ai-element_type3 {
+        --uiaiElementLineColor: var(--aiElementLineColor, #000);
+        --uiaiElementPadding: var(--aiElementPadding, 10px);
+        transition: color .3s ease-out;
+        z-index: 1;
+    }
+
+        .ai-element_type3::before,
+        .ai-element_type3::after {
+            content: "";
+            background-color: var(--uiaiElementLineColor);
+            opacity: 1;
+            position: absolute;
+            z-index: -1;
+            transition: transform .35s ease-out, opacity .35s ease-out .03s;
+        }
+
+        .ai-element_type3:hover::before,
+        .ai-element_type3:hover::after {
+            opacity: 0;
+            transition-delay: 0s;
+        }
+
+    .ai-element_text::before {
+        content: attr(data-ai-element-text);
+        color: var(--uiaiElementColorHover);
+        position: absolute;
+    }
+
+    .ai-element_text::before,
+    .ai-element_text .ai-element__label {
+        transition-property: transform;
+        transition-timing-function: cubic-bezier(.86, .6, .08, 1.01);
+        transition-duration: .4s;
+    }
+
+    .ai-element_text:hover::before,
+    .ai-element_text:hover .ai-element__label {
+        transition-duration: .3s;
+    }
+
+    /*
+    =====
+    EFFECTS
+    =====
+    */
+
+    /* effect 1 */
+
+    .ai-element1::before,
+    .ai-element1::after,
+    .ai-element1 .ai-element__label::before,
+    .ai-element1 .ai-element__label::after {
+        transform: translate3d(0, 0, 0);
+        transition-timing-function: ease-out;
+        transition-duration: .2s, .15s;
+    }
+
+    .ai-element1:hover::before,
+    .ai-element1:hover::after,
+    .ai-element1:hover .ai-element__label::before,
+    .ai-element1:hover .ai-element__label::after {
+        transition-duration: .25s;
+    }
+
+    .ai-element1:hover::before {
+        transform: translate3d(-105%, 0, 0);
+    }
+
+    .ai-element1:hover::after {
+        transform: translate3d(105%, 0, 0);
+    }
+
+    .ai-element1:hover .ai-element__label::before {
+        transform: translate3d(0%, -100%, 0);
+    }
+
+    .ai-element1:hover .ai-element__label::after {
+        transform: translate3d(0%, 100%, 0);
+    }
+
+    /* effect 2 */
+
+    .ai-element2::after {
+        transform: translate3d(0, 0, 0);
+        transition: transform .2s ease-in;
+    }
+
+    .ai-element2:hover::after {
+        transform: translate3d(-100%, 0, 0);
+    }
+
+    /* effect 3 */
+
+    .ai-element3::after {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+        transition: transform .3s ease-out, opacity .3s ease-out;
+    }
+
+    .ai-element3:hover::after {
+        opacity: 0;
+        transform: translate3d(0, 100%, 0);
+    }
+
+    /* effect 4 */
+
+    .ai-element4::before,
+    .ai-element4::after,
+    .ai-element4 .ai-element__label::before,
+    .ai-element4 .ai-element__label::after {
+        transition-timing-function: ease-out;
+        transition-duration: .2s, .2s;
+        transform: translate3d(0, 0, 0);
+    }
+
+    .ai-element4:hover::before,
+    .ai-element4:hover::after,
+    .ai-element4:hover .ai-element__label::before,
+    .ai-element4:hover .ai-element__label::after {
+        transition-delay: 0s, .05s;
+    }
+
+    .ai-element4:hover::before {
+        transform: translate3d(-100%, 0, 0);
+    }
+
+    .ai-element4:hover::after {
+        transform: translate3d(100%, 0, 0);
+    }
+
+    .ai-element4:hover .ai-element__label::before {
+        transform: translate3d(0, 100%, 0);
+    }
+
+    .ai-element4:hover .ai-element__label::after {
+        transform: translate3d(0, -100%, 0);
+    }
+
+    /* effect 5 */
+
+    .ai-element5::before,
+    .ai-element5::after,
+    .ai-element5 .ai-element__label::before,
+    .ai-element5 .ai-element__label::after {
+        transition-duration: .2s;
+        transition-timing-function: ease-out;
+        transform: translate3d(0, 0, 0);
+    }
+
+    .ai-element5::before,
+    .ai-element5::after {
+        width: 100%;
+        height: var(--uiaiElementLineWeight);
+        left: 0;
+    }
+
+    .ai-element5 .ai-element__label::before,
+    .ai-element5 .ai-element__label::after {
+        width: var(--uiaiElementLineWeight);
+        height: 100%;
+        top: 0;
+    }
+
+    .ai-element5::before {
+        top: 0;
+    }
+
+    .ai-element5::after {
+        bottom: 0;
+    }
+
+    .ai-element5 .ai-element__label::before {
+        left: 0;
+    }
+
+    .ai-element5 .ai-element__label::after {
+        right: 0;
+    }
+
+    .ai-element5:hover::before,
+    .ai-element5:hover .ai-element__label::before {
+        transition-delay: 0s;
+    }
+
+    .ai-element5::after,
+    .ai-element5:hover .ai-element__label::after {
+        transition-delay: .25s;
+    }
+
+    .ai-element5 .ai-element__label::after,
+    .ai-element5:hover::after {
+        transition-delay: .15s;
+    }
+
+    .ai-element5 .ai-element__label::before,
+    .ai-element5:hover::before {
+        transition-delay: .35s;
+    }
+
+    .ai-element5:hover::before {
+        transform: translate3d(-105%, 0, 0);
+    }
+
+    .ai-element5:hover::after {
+        transform: translate3d(105%, 0, 0);
+    }
+
+    .ai-element5:hover .ai-element__label::before {
+        transform: translate3d(0, 105%, 0);
+    }
+
+    .ai-element5:hover .ai-element__label::after {
+        transform: translate3d(0, -105%, 0);
+    }
+
+    /* effect 6 */
+
+    .ai-element6::before,
+    .ai-element6::after {
+        width: 50%;
+        height: 100%;
+        top: 0;
+        transform: translate3d(0, 0, 0);
+    }
+
+    .ai-element6::before {
+        left: 0;
+    }
+
+    .ai-element6::after {
+        right: 0;
+    }
+
+    .ai-element6:hover::before {
+        transform: translate3d(-100%, 0, 0);
+    }
+
+    .ai-element6:hover::after {
+        transform: translate3d(100%, 0, 0);
+    }
+
+    /* effect 7 */
+
+    .ai-element7::before,
+    .ai-element7::after {
+        width: 100%;
+        height: 50%;
+        left: 0;
+        transform: translate3d(0, 0, 0);
+    }
+
+    .ai-element7::before {
+        top: 0;
+    }
+
+    .ai-element7::after {
+        bottom: 0;
+    }
+
+    .ai-element7:hover::before {
+        transform: translate3d(0, -50%, 0);
+    }
+
+    .ai-element7:hover::after {
+        transform: translate3d(0, 50%, 0);
+    }
+
+    /* effect 8 */
+
+    .ai-element8::before,
+    .ai-element8::after {
+        width: 51%;
+        height: 100%;
+        transform: rotate(0);
+        top: 0;
+    }
+
+    .ai-element8::before {
+        left: 0;
+    }
+
+    .ai-element8::after {
+        right: 0;
+    }
+
+    .ai-element8:hover::before,
+    .ai-element8:hover::after {
+        transform: rotate(360deg);
+    }
+
+    /* effect 9 */
+
+    .ai-element9::before,
+    .ai-element9::after {
+        width: 51%;
+        height: 100%;
+        top: 0;
+        transform: translate3d(0, 0, 0);
+    }
+
+    .ai-element9::before {
+        left: 0;
+    }
+
+    .ai-element9::after {
+        right: 0;
+    }
+
+    .ai-element9:hover::before {
+        transform: translate3d(-100%, 0, 0) rotate(-45deg);
+    }
+
+    .ai-element9:hover::after {
+        transform: translate3d(100%, 0, 0) rotate(-45deg);
+    }
+
+
+
+
+    media (min-width: 1200px) {
+        body
+
+    {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(240px, 1fr));
+    }
+
+    }
+
+
+
+
+
+    .ai-element__label {
+        --uiaiElementColorHover: var(--aiElementColorHover);
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+
+    .ai-element:hover .ai-element__label {
+        color: var(--uiaiElementColorHover);
+    }
+
+    /*
+    =====
+    SETTINGS
+    =====
+    */
+
+    .ai-element {
+        --aiElementLineWeight: 3px;
+        --aiElementLineColor: #1b4277;
+        --aiElementColor: #ffffff;
+        --aiElementColorHover: #ffffff;
+    }
+
+    .ai-element_type1,
+    .ai-element_type3 {
+        --aiElementPadding: 10px 15px;
+    }
+
+    .ai-element_type3 {
+        --aiElementColor: #fff;
+    }
+</style>

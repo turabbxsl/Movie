@@ -1,0 +1,71 @@
+﻿
+@model IEnumerable<Filmsayt.Models.tbl_kinolar>
+
+@{
+    ViewBag.Title = "Filmlistesi";
+    Layout = "~/Views/Shared/Adminlayout.cshtml";
+}
+
+<section class="panel">
+    <header class="panel-heading">
+        Filmler
+    </header>
+    <div class="panel-body">
+        <div class="adv-table editable-table ">
+            <br />
+            <div class="clearfix">
+                <div class="btn-group">
+                    <a href="/Admin/Filmelaveet" class="btn btn-primary">
+                        Yeni Film <i class="icon-plus"></i>
+                    </a>
+                </div>
+
+            </div>
+            <br />
+            <div class="space15"></div>
+            <table class="table table-striped table-hover table-bordered" id="editable-sample">
+                <thead>
+                    <tr>
+                        <th>Kino Adı</th>
+                        <th>Aciqlama</th>
+                        <th>Kategoriyasi</th>
+                        <th>Oyuncu Adi</th>
+                        <th>Yonetmen Adi</th>
+                        <th>Tarix</th>
+                        <th>Reyting</th>
+                        <th>Sekil Elave Et</th>
+                        <th>Guncelle/Sil</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var kino in Model)
+                    {
+                    <tr class="">
+                        <td>@kino.kinoadi</td>
+                        <td>@kino.kinoaciqlama</td>
+                        <td>@kino.tbl_kategoriya.kategoriyaadi</td>
+                        <td>@kino.oyuncuadi</td>
+                        <td>@kino.yonetmenadi</td>
+                        <td>@kino.tarix</td>
+                        <td>@kino.reyting</td>
+                        <td>
+                            <a class="delete" href=@Url.Action("Sekil","Admin",new {kinoid = kino.id})>Sekil Elave Et</a><i class="add-on"></i>
+                        </td>
+                        <td><a class="edit" href=@Url.Action("Filmguncelle","Admin",new {kinoid = kino.id})>Guncelle</a></td>
+                        <td><a class="delete" href=@Url.Action("Filmsil","Admin",new {kinoid = kino.id})>Sil</a></td>
+
+                    </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+

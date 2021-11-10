@@ -1,0 +1,172 @@
+﻿@model IEnumerable<Filmsayt.Models.tbl_yorum>
+
+
+
+
+@helper Sureyaz(DateTime tarix)
+{
+    TimeSpan sure = DateTime.Now - tarix;
+    if (sure.Milliseconds < 0)
+    {
+        <div></div>
+    }
+    else if (sure.TotalMinutes < 1)
+    {
+        <div>İndi</div>
+    }
+
+    else if (sure.TotalHours < 1)
+    {
+        <div>@sure.Minutes Dəqiqə Əvvəl</div>
+    }
+
+    else if (sure.TotalDays < 1)
+    {
+        <div>@sure.Hours Saat Evvel</div>
+    }
+
+    else
+    {
+        <div>@tarix.ToString("dd.MM.yyyy") Tarixinde</div>
+    }
+}
+
+
+
+
+<div>
+    <div class="row">
+
+        <div class="topbar-filter">
+            <p style="font-size:18px;color:white">Toplam (@Model.Count()) Sayda Yorum Var</p>
+
+        </div>
+
+
+
+
+        <div class="mv-user-review-item">
+            @foreach (var item in Model)
+            {
+                var defaultStars = 9 - item.rayting;
+
+
+                <div class="user-infor" style="background-color:#0c1e36;border-radius:15px;width:700px;">
+                    <div>
+                        <img style="margin-right:700px;float:left;" src="~/Content/Filmresimler/uss.png" alt="">
+                        <br />
+                        <br />
+
+                        <table>
+                            <tr>
+                                <td>
+                                    @if (string.IsNullOrEmpty(item.istifadeci))
+                                    {
+                                        <h5 style="color:#d4cfcf;">Üzv   (@item.tbl_kullanici.istifadeciadi)</h5>
+                                    }
+                                    @if (!string.IsNullOrEmpty(item.istifadeci))
+                                    {
+                                        <h5 style="color:#d4cfcf;">Ziyarətçi (@item.istifadeci)</h5>
+                                    }
+                                </td>
+                                <td>
+
+                                    <div class="movie-rate" style="border-width:0px;margin-bottom:0px;">
+                                        <div class="rate-star" style="border-width:0px;float:left;margin-left:150px;">
+                                            @for (int i = 1; i <= item.rayting; i++)
+                                            {
+                                                <i class="ion-ios-star" style="font-size:20px;"></i>
+
+                                            }
+                                            @for (int i = 1; i <= defaultStars; i++)
+                                            {
+                                                <i class="ion-ios-star-outline" style="font-size:20px;"></i>
+                                            }
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+
+
+
+
+
+                    </div>
+
+
+
+
+                    <p class="time">
+                    <p style="margin-right:430px;color:white;font-size:16px;font-family: cursive;">@item.yorumicerik</p>
+
+
+
+
+                    <br />
+                    <br />
+                    <br />
+                    <h6 style="color:#bcc1ca;margin-left:550px;font-size:13px">@Sureyaz(Convert.ToDateTime(item.tarix))</h6>
+                </div>
+
+
+                <br />
+                if (item.tbl_replies.Count() > 0)
+                {
+                    foreach (var reply in item.tbl_replies)
+                    {
+                        <div style="background-color:#0c1e36;margin-left:100px;width:600px;height:200px;border-radius:15px;">
+                            <div style="float:left;">
+                                <img style="margin-right:460px;float:left;" src="~/Content/Filmresimler/uss.png" alt="">
+                                <br />
+                                <br />
+
+                                <h5 style="font-size:19px;color:#d4cfcf;margin-right:308px;">
+                                    Üzv  @reply.tbl_kullanici.istifadeciadi
+                                </h5>
+
+                                <br />
+                            </div>
+
+                            <p style="float:left;font-size:19px;padding-bottom:70px;margin-left:56px;color:#d4cfcf;">
+                                @reply.text
+                            </p>
+                            <br />
+                            <div>
+                                <h6 style="color:#bcc1ca;width:150px;margin-top:100px;margin-left:450px;font-size:13px">@Sureyaz(Convert.ToDateTime(item.tarix))</h6>
+                            </div>
+                        </div>
+                        <br />
+
+                    }
+                    <br />
+                }
+
+
+
+                <form method="post" action="/Home/REPLY/@item.id">
+                    @Html.AntiForgeryToken()
+                    @Html.TextArea("yorumm", new { @class = "scrollbar", style = "width:470px;height:100px;background-color:#0c1e36;border-top:0px;border-left:0px;border-right:0px;resize:none;font-size:16px;color:white;border-radius:20px;border-width:0px;box-shadow:2px 2px 9px 4px #597eb5;box-sizing:border-box;margin-left:120px;", placeholder = "Yorum Haqqında Fikrinizi Bildirin" })
+                    <br />
+                    <input type="hidden" name="commentid" value="@item.id" />
+                    @if (Session["username"] != null)
+                    {
+                        <input type="submit" style="width:120px;border-radius:10px;margin-left:0px;font-size:15px;height:40px;" class="example_c" name="name" value="Yaz" />
+                    }
+                    else
+                    {
+                        <span style="color:white;font-size:16px;margin-right:90px;">Yoruma Fikrinizi Bildirmək Üçün Sayta <a href="/Home/Qeydiyyat" style="font-size:17px;">Qeydiyyat Olun</a>.Hazır Hesabınız Varsa İsə <a style="font-size:17px;" href="/Home/Giris">Bura Daxil Olun</a></span>
+                    }
+                </form>
+
+                <div style="margin-right:100px;" class="title-hd-sm">
+
+                </div>
+            }
+
+
+        </div>
+
+    </div>
+</div>
+

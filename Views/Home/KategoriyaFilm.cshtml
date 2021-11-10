@@ -1,0 +1,514 @@
+﻿@model IEnumerable<Filmsayt.Models.tbl_kinolar>
+
+@{
+    ViewBag.Title = "KategoriyaFilm";
+    Layout = "~/Views/Shared/SaytLayout.cshtml";
+}
+
+<style>
+
+    ::-webkit-scrollbar {
+        width: 9px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: linear-gradient(transparent,#00c6ff);
+        border-radius: 6px;
+    }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(transparent,#27768d);
+            border-radius: 6px;
+        }
+
+</style>
+<div class="row">
+    <div class="main">
+        @foreach (var item in Model)
+        {
+            <div class="all" style="margin-left:2px;">
+                <div class="round1" style="color:whitesmoke;font-family:monospace">@item.kinoadi</div>
+                <a href="/Home/Details/@item.id"> <img src="@item.tbl_resm1.FirstOrDefault(x => x.varsayilan == true).ortaolculu" /></a>
+            </div>
+
+
+        }
+    </div>
+</div>
+
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    img {
+        cursor:auto;
+    }
+
+
+    body {
+        font-family: Oswald;
+    }
+
+    .main {
+        width: 1200px;
+        height: 350px;
+        margin: 0 auto;
+    }
+
+    .all {
+        width: 230px;
+        height: 350px;
+        position: relative;
+        background-color: rgba(255,255,255,0.5);
+        z-index: 1;
+        margin-right: 10px;
+        overflow: hidden;
+        float: left;
+        margin-bottom: 10px;
+    }
+
+    .box-one {
+        width: 230px;
+        height: 40px;
+        background-color: rgba(255,255,255,0.5);
+        position: absolute;
+        z-index: 2;
+        bottom: 0;
+        left: 300px;
+        transition: all 1s;
+        text-align: center;
+        line-height: 40px;
+        color: #ffffff;
+    }
+
+    .all:hover > .box-one {
+        left: 0;
+    }
+
+    .search {
+        width: 50px;
+        height: 50px;
+        background-color: #fff;
+        position: absolute;
+        z-index: 3;
+        right: 50%;
+        margin-right: -25px;
+        top: 50%;
+        margin-top: -25px;
+        opacity: 0;
+        transition: all 0.5s;
+        color: #000;
+        text-align: center;
+        line-height: 50px;
+    }
+
+    .all:hover > .search {
+        opacity: 1;
+        transform: scale(2) rotate(360deg);
+    }
+
+    .link {
+        width: 190px;
+        height: 350px;
+        overflow: hidden;
+        color: #666;
+        position: absolute;
+        z-index: 4;
+        transition: all 1.5s;
+        top: -300px;
+        background-color: rgba(204,204,204,0.5);
+    }
+
+    .link-2 {
+        width: 190px;
+        height: 350px;
+        background-color: rgba(204,204,204,0.5);
+        color: #666;
+        position: absolute;
+        z-index: 4;
+        left: 50%;
+        overflow: hidden;
+        transition: all 1.5s;
+        bottom: -300px;
+    }
+
+    .all:hover .link {
+        top: 0;
+    }
+
+    .all:hover .link-2 {
+        bottom: 0;
+    }
+
+    .all .link p, .all .link-2 p {
+        font-size: 48px;
+        font-family: Oswald;
+        color: #FFF;
+        line-height: 350px;
+    }
+
+    .all .link p {
+        margin-left: 93%;
+    }
+
+    .all .link-2 p {
+        margin-left: -7%;
+    }
+
+
+
+    .strip {
+        height: 95px;
+        width: 230px;
+        background-color: rgba(255,255,255,0.5);
+        position: absolute;
+        z-index: 5;
+        overflow: hidden;
+        left: -300px;
+        transition: all 1s;
+    }
+
+    .strip-1 {
+        height: 95px;
+        width: 230px;
+        background-color: rgba(0,0,51,0.2);
+        position: absolute;
+        z-index: 6;
+        top: 95px;
+        overflow: hidden;
+        right: -300px;
+        transition: all 1s;
+    }
+
+    .strip-2 {
+        height: 95px;
+        width: 230px;
+        background-color: rgba(255,255,255,0.5);
+        position: absolute;
+        z-index: 7;
+        top: 190px;
+        overflow: hidden;
+        left: -300px;
+        transition: all 1s;
+    }
+
+    .strip-3 {
+        height: 285px;
+        width: 230px;
+        background-color: rgba(0,0,51,0.2);
+        position: absolute;
+        z-index: 8;
+        top: 285px;
+        overflow: hidden;
+        right: -300px;
+        transition: all 1s;
+    }
+
+    .all:hover > .strip {
+        left: 0;
+    }
+
+    .all:hover > .strip-1 {
+        right: 0;
+    }
+
+    .all:hover > .strip-2 {
+        left: 0;
+    }
+
+    .all:hover > .strip-3 {
+        right: 0;
+    }
+
+    .round {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 100px;
+        position: absolute;
+        z-index: 9;
+        font-size: 48px;
+        font-family: Oswald;
+        color: #FFF;
+        right: 50%;
+        margin-right: -50px;
+        top: 50%;
+        opacity: 0.1;
+        margin-top: -50px;
+        background-color: rgba(153,0,0,0.5);
+        transition: all 1s;
+    }
+
+    .all:hover > .round {
+        transform: scale(1.5) rotate(-360deg);
+        border-radius: 20%;
+        opacity: 1;
+        border: 1px solid #fff;
+    }
+
+    .move {
+        width: 50px;
+        height: 50px;
+        background-color: #fff;
+        position: absolute;
+        z-index: 10;
+        top: 50%;
+        margin-top: -25px;
+        left: -50px;
+        opacity: 0;
+        transition: all 0.5s;
+        text-align: center;
+        line-height: 50px;
+        font-size: 36px;
+        color: #333;
+    }
+
+    .move-2 {
+        transition: all 0.8s;
+    }
+
+    .all:hover > .move {
+        margin-left: 40%;
+        transform: rotate(360deg);
+        opacity: 1;
+    }
+
+    .all:hover > .move-2 {
+        margin-left: 73%;
+        transform: rotate(360deg);
+        opacity: 1;
+    }
+
+    .box {
+        width: 100px;
+        height: 100px;
+        background-color: rgba(0,0,102,0.5);
+        position: absolute;
+        opacity: 0;
+        z-index: 11;
+        transition: all 1s;
+        text-align: center;
+        line-height: 140px;
+        color: #FFF;
+    }
+
+    .all:hover .box {
+        text-indent: 40px;
+        transform: scale(5);
+        opacity: 0.8;
+        border-radius: 0 0 30px 0;
+        border: #FFF solid 1px;
+    }
+
+    .slice {
+        width: 230px;
+        height: 95px;
+        right: -300px;
+        background-color:;
+        position: absolute;
+        z-index: 12;
+        transition: all 1s;
+        opacity: 0;
+    }
+
+    .s-1 {
+        width: 95px;
+        height: 95px;
+        position: absolute;
+        z-index: 13;
+        background-color: rgba(0,0,0,0.5);
+        display: inline-block;
+        text-align: center;
+        line-height: 95px;
+        font-size: 36px;
+        color: #FFF;
+    }
+
+    .s-2 {
+        position: absolute;
+        right: 95px;
+        z-index: 14;
+    }
+
+    .all:hover .slice {
+        right: 0;
+        opacity: 1;
+    }
+
+    .slice-y {
+        width: 95px;
+        height: 350px;
+        top: -300px;
+        background-color:;
+        position: absolute;
+        left: 95px;
+        z-index: 15;
+        opacity: 0;
+        transition: all 1s;
+    }
+
+    .sy-1 {
+        width: 95px;
+        height: 95px;
+        position: absolute;
+        top: 95px;
+        z-index: 16;
+        background-color: rgba(255,255,255,0.5);
+        display: inline-block;
+        text-align: center;
+        line-height: 95px;
+        font-size: 36px;
+        color: #000;
+    }
+
+    .sy-2 {
+        top: 285px;
+    }
+
+    .all:hover .slice-y {
+        top: 0;
+        opacity: 1;
+    }
+
+    .slice-x {
+        top: 190px;
+    }
+
+    .slice-y2 {
+        left: 285px;
+    }
+
+    .round1 {
+        width: 230px;
+        height: 350px;
+        position: absolute;
+        z-index: 17;
+        background-color: rgba(0,0,0,1);
+        border-radius: 100%;
+        top: -285px;
+        transition: all 1s;
+        opacity: 0;
+        text-align: center;
+        line-height: 190px;
+        font-size: 27px;
+    }
+
+    .all:hover .round1 {
+        border-radius: 0%;
+        background-color: rgba(31, 70, 103, 0.50);
+        top: 190px;
+        opacity: 1;
+        text-align: center;
+        line-height: 190px;
+        font-size: 27px;
+    }
+
+    .fade {
+        width: 230px;
+        height: 350px;
+        background-color: rgba(255,255,255,1);
+        position: absolute;
+        font-size: 36px;
+        z-index: 19;
+        transition: all 0.5s;
+    }
+
+    .all:hover .fade {
+        transform: scale(0.8);
+        background-color: rgba(255,255,255,0.1);
+    }
+
+    .fade2 {
+        width: 190px;
+        height: 350px;
+        position: absolute;
+        z-index: 18;
+        text-align: center;
+        font-size: 36px;
+        line-height: 150px;
+        color: #000;
+        top: 25%;
+        right: 25%;
+        opacity: 0.2;
+        background-color: rgba(255,255,255,1);
+        transition: all 0.5s;
+    }
+
+    .all:hover .fade2 {
+        top: 0;
+        opacity: 1;
+        background-color: rgba(255,255,255,0.5);
+    }
+
+    .fade3 {
+        width: 90px;
+        height: 350px;
+        background-color: rgba(0,0,0,1);
+        position: absolute;
+        z-index: 19;
+        right: 38%;
+        transition: all 1s;
+    }
+
+    .all:hover .fade3 {
+        border-radius: 50px 50px 0 0;
+        background-color: rgba(0,0,0,0.9);
+        margin-top: 260px;
+    }
+
+
+    .drop {
+        width: 230px;
+        height: 350px;
+        transition: all 0.5s;
+    }
+
+        .drop::after {
+            content: "";
+            height: 350px;
+            width: 230px;
+            background-color: rgba(0,0,0,0.5);
+            position: absolute;
+            right: -100%;
+            transform: rotate(45deg);
+            top: 100%;
+            transition: all 0.5s;
+        }
+
+        .drop::before {
+            content: "";
+            height: 350px;
+            width: 300px;
+            width: 230px;
+            background-color: rgba(255,255,255,0.5);
+            position: absolute;
+            left: -100%;
+            transform: rotate(45deg);
+            bottom: 100%;
+            transition: all 0.5s;
+        }
+
+    .drop-text {
+        height: 50px;
+        width: 230px;
+        background-color: #000;
+    }
+
+    .all:hover .drop::before {
+        position: absolute;
+        left: 0;
+        bottom: 40%;
+        transform: rotate(90deg);
+    }
+
+    .all:hover .drop::after {
+        position: absolute;
+        right: 0;
+        top: 40%;
+        transform: rotate(90deg);
+    }
+</style>

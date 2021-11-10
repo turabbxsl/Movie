@@ -1,0 +1,422 @@
+﻿
+@model IEnumerable<Filmsayt.Models.tbl_kinolar>
+
+@{
+    ViewBag.Title = "Navencox";
+    Layout = "~/Views/Shared/SaytLayout.cshtml";
+}
+
+<div class="page-single">
+    <div class="container">
+        <div class="row ipad-width">
+          
+
+                <div class="topbar-filter">
+                    <p>Toplam   <span> @Model.Count() </span> Film Tapıldı</p>
+
+                    <a href="movielist.html" class="list"><i class="ion-ios-list-outline active"></i></a>
+                    <a href="moviegrid.html" class="grid"><i class="ion-grid"></i></a>
+                </div>
+                <div class="flex-wrap-movielist">
+                    @foreach (var item in Model)
+                    {
+                       
+
+                    <figure class="snip1477">
+                        <img src="@item.tbl_resm1.FirstOrDefault(x => x.varsayilan == true).boyukolculu" alt="sample38" />
+                        <div class="title">
+                            <div>
+                                
+                                <h4 style="font-size:17px;">Ətraflı Bax</h4>
+                            </div>
+                        </div>
+                        <figcaption>
+                            <p style="font-size:22px;margin-left:10px;color:white">@item.kinoadi</p>
+                        </figcaption>
+                        <a href="/Home/Details/@item.id"></a>   
+                    </figure>
+                            
+                    }
+
+
+
+                </div>
+                <br />
+
+                <div class="topbar-filter">
+                    <label>Film Səhifələri:</label>
+                    <select>
+                        <option value="range">20 Film</option>
+                        <option value="saab">10 Film</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-12 col-xs-12">
+                <div class="sidebar">
+                    <div style="margin-right:30px;" class="sb-facebook sb-it">
+                        <h4 class="sb-title">Instagramda Tap</h4>
+                        <img src="~/Content/Filmresimler/asasasasa.jpg" data-src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Ftemplatespoint.net%2F%3Ffref%3Dts&tabs=timeline&width=340&height=315px&small_header=true&adapt_container_width=false&hide_cover=false&show_facepile=true&appId" height="315" style="width:100%;border:none;overflow:hidden"></img>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<style>
+      .snip1573 {
+          background-color: #000;
+          display: inline-block;
+          font-family: 'Open Sans', sans-serif;
+          font-size: 16px;
+          margin: 10px;
+          max-width: 315px;
+          min-width: 230px;
+          overflow: hidden;
+          position: relative;
+          text-align: center;
+          width: 100%;
+      }
+
+          .snip1573 * {
+              -webkit-box-sizing: border-box;
+              box-sizing: border-box;
+              -webkit-transition: all 0.35s ease;
+              transition: all 0.35s ease;
+          }
+
+          .snip1573:before,
+          .snip1573:after {
+              position: absolute;
+              top: 0;
+              bottom: 0;
+              left: 0;
+              right: 0;
+              -webkit-transition: all 0.35s ease;
+              transition: all 0.35s ease;
+              background-color: #000000;
+              border-left: 3px solid #fff;
+              border-right: 3px solid #fff;
+              content: '';
+              opacity: 0.9;
+              z-index: 1;
+          }
+
+          .snip1573:before {
+              -webkit-transform: skew(45deg) translateX(-155%);
+              transform: skew(45deg) translateX(-155%);
+          }
+
+          .snip1573:after {
+              -webkit-transform: skew(45deg) translateX(155%);
+              transform: skew(45deg) translateX(155%);
+          }
+
+          .snip1573 img {
+              backface-visibility: hidden;
+              max-width: 100%;
+              vertical-align: top;
+          }
+
+          .snip1573 figcaption {
+              top: 50%;
+              left: 50%;
+              position: absolute;
+              z-index: 2;
+              -webkit-transform: translate(-50%, -50%) scale(0.5);
+              transform: translate(-50%, -50%) scale(0.5);
+              opacity: 0;
+              -webkit-box-shadow: 0 0 10px #000000;
+              box-shadow: 0 0 10px #000000;
+          }
+
+          .snip1573 h3 {
+              background-color: #000000;
+              border: 2px solid #fff;
+              color: #fff;
+              font-size: 1em;
+              font-weight: 600;
+              letter-spacing: 1px;
+              margin: 0;
+              padding: 5px 10px;
+              text-transform: uppercase;
+          }
+
+          .snip1573 h2 {
+              background-color: #000000;
+              border: 2px solid #fff;
+              color: #fff;
+              font-size: 28px;
+              font-weight: 600;
+              letter-spacing: 1px;
+              margin: 0;
+              padding: 5px 10px;
+              text-transform: uppercase;
+          }
+
+          .snip1573 a {
+              position: absolute;
+              top: 0;
+              bottom: 0;
+              left: 0;
+              right: 0;
+              z-index: 3;
+          }
+
+          .snip1573:hover > img,
+          .snip1573.hover > img {
+              opacity: 0.5;
+          }
+
+          .snip1573:hover:before,
+          .snip1573.hover:before {
+              -webkit-transform: skew(45deg) translateX(-55%);
+              transform: skew(45deg) translateX(-55%);
+          }
+
+          .snip1573:hover:after,
+          .snip1573.hover:after {
+              -webkit-transform: skew(45deg) translateX(55%);
+              transform: skew(45deg) translateX(55%);
+          }
+
+          .snip1573:hover figcaption,
+          .snip1573.hover figcaption {
+              -webkit-transform: translate(-50%, -50%) scale(1);
+              transform: translate(-50%, -50%) scale(1);
+              opacity: 1;
+          }
+
+      .card {
+          overflow: hidden;
+          position: relative;
+          display: inline-block;
+          height: 400px;
+          width: 600px;
+          /*
+    Each "card" is set to 600x400px because that is the size of  the image, adjust as needed. Make sure the overflow is set to hidden or else when the img scales it will clip with the other images.
+    */
+      }
+
+      .img-container {
+          transition: transform .1s ease;
+      }
+
+          .img-container:hover {
+              transform: scale(1.1);
+              /*
+    Change the scale value as much as you want to change the amount of zoom on hover.
+    */
+          }
+
+      .card img {
+          opacity: .5;
+          transform: translate(0,0);
+          /*
+    Change the opacity value to change how "faded" you want the image to appear when it is not hovered.
+    */
+          transition: opacity .25s ease-in-out;
+      }
+
+          .card img:hover {
+              opacity: 1;
+          }
+
+    figure.snip1477 {
+        font-family: 'Raleway', Arial, sans-serif;
+        position: relative;
+        overflow: hidden;
+        margin: 10px;
+        min-width: 230px;
+        max-width: 150px;
+        width: 100%;
+        color: #ffffff;
+        text-align: center;
+        font-size: 16px;
+        background-color: #000000;
+    }
+
+        figure.snip1477 *,
+        figure.snip1477 *:before,
+        figure.snip1477 *:after {
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            -webkit-transition: all 0.55s ease;
+            transition: all 0.55s ease;
+        }
+
+        figure.snip1477 img {
+            max-width: 100%;
+            backface-visibility: hidden;
+            vertical-align: top;
+            opacity: 0.9;
+        }
+
+        figure.snip1477 .title {
+            position: absolute;
+            top: 58%;
+            left: 25px;
+            padding: 5px 10px 10px;
+        }
+
+            figure.snip1477 .title:before,
+            figure.snip1477 .title:after {
+                height: 2px;
+                width: 400px;
+                position: absolute;
+                content: '';
+                background-color: #ffffff;
+            }
+
+            figure.snip1477 .title:before {
+                top: 0;
+                left: 10px;
+                -webkit-transform: translateX(100%);
+                transform: translateX(100%);
+            }
+
+            figure.snip1477 .title:after {
+                bottom: 0;
+                right: 10px;
+                -webkit-transform: translateX(-100%);
+                transform: translateX(-100%);
+            }
+
+            figure.snip1477 .title div:before,
+            figure.snip1477 .title div:after {
+                width: 2px;
+                height: 300px;
+                position: absolute;
+                content: '';
+                background-color: #ffffff;
+            }
+
+            figure.snip1477 .title div:before {
+                top: 10px;
+                right: 0;
+                -webkit-transform: translateY(100%);
+                transform: translateY(100%);
+            }
+
+            figure.snip1477 .title div:after {
+                bottom: 10px;
+                left: 0;
+                -webkit-transform: translateY(-100%);
+                transform: translateY(-100%);
+            }
+
+        figure.snip1477 h2,
+        figure.snip1477 h4 {
+            margin: 0;
+            text-transform: uppercase;
+        }
+
+        figure.snip1477 h2 {
+            font-weight: 400;
+        }
+
+        figure.snip1477 h4 {
+            display: block;
+            font-weight: 700;
+            background-color: #ffffff;
+            padding: 5px 10px;
+            color: #000000;
+        }
+
+        figure.snip1477 figcaption {
+            position: absolute;
+            bottom: 42%;
+            left: 25px;
+            text-align: left;
+            opacity: 0;
+            padding: 5px 60px 5px 10px;
+            font-size: 0.8em;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+        }
+
+            figure.snip1477 figcaption p {
+                margin: 0;
+            }
+
+        figure.snip1477 a {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+
+        figure.snip1477:hover img,
+        figure.snip1477.hover img {
+            zoom: 1;
+            filter: alpha(opacity=35);
+            -webkit-opacity: 0.35;
+            opacity: 0.35;
+        }
+
+        figure.snip1477:hover .title:before,
+        figure.snip1477.hover .title:before,
+        figure.snip1477:hover .title:after,
+        figure.snip1477.hover .title:after,
+        figure.snip1477:hover .title div:before,
+        figure.snip1477.hover .title div:before,
+        figure.snip1477:hover .title div:after,
+        figure.snip1477.hover .title div:after {
+            -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+        }
+
+        figure.snip1477:hover .title:before,
+        figure.snip1477.hover .title:before,
+        figure.snip1477:hover .title:after,
+        figure.snip1477.hover .title:after {
+            -webkit-transition-delay: 0.15s;
+            transition-delay: 0.15s;
+        }
+
+        figure.snip1477:hover figcaption,
+        figure.snip1477.hover figcaption {
+            opacity: 1;
+            -webkit-transition-delay: 0.2s;
+            transition-delay: 0.2s;
+        }
+      }
+</style>
+<script>
+
+
+
+
+    //Creates an event that fires every time the mouse moves over any div with the class of "img".
+    $(".img").mousemove(function (event) {
+
+        //Both the x and y value are calculated by taking the mouse x,y position on the page and subtracting it from the x,y position of the image on the page. "this" is the hovered element with the class of "img"
+        var mousex = event.pageX - $(this).offset().left;
+        var mousey = event.pageY - $(this).offset().top;
+
+
+        //If you just used the mouse position values the translation effect will only go up and to the right, by subtracting half of the length / width of the imagevfrom the values  we get either a positive or negitive number so that the image will move in any direction.
+
+        //The 40 controls the amount of "movement" that will happen by giving us a smaller number, feel free to change it to get the effect that you want.
+        var imgx = (mousex - 300) / 40;
+        var imgy = (mousey - 200) / 40;
+
+        //Adds a translation css styles to the image element
+        $(this).css("transform", "translate(" + imgx + "px," + imgy + "px)");
+    });
+
+    //This function will fire every time the user mouses off of the image. It resets the translation back to 0.
+    $(".img").mouseout(function () {
+        $(this).css("transform", "translate(0px,0px)");
+    });
+
+
+    $(".hover").mouseleave(
+        function () {
+            $(this).removeClass("hover");
+        }
+    );
+
+</script>

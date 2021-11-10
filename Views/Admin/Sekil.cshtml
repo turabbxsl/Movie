@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "Sekil";
+    Layout = "~/Views/Shared/Adminlayout.cshtml";
+}
+
+<h2>Sekil</h2>
+
+<form action="/Admin/Sekil" method="post" enctype="multipart/form-data">
+
+    <input type="hidden" name="ID" value="@Model" />
+    <br /> <br /> <br /> <br /> <br /> <br />
+    <div class="form-group">
+        <label class="control-label col-md-3">Filmin Sekli</label>
+        <div class="controls col-md-9">
+            <div class="fileupload fileupload-new" data-provides="fileupload">
+                <span class="btn btn-white btn-file">
+                    <span class="fileupload-new"><i class="icon-paper-clip"></i> Sekli Sec</span>
+
+                    <input type="file" name="fileupload" class="default" />
+                </span>
+                <span class="fileupload-preview" style="margin-left:5px;"></span>
+                <a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none; margin-left:5px;"></a>
+            </div>
+        </div>
+    </div>
+    <br /><br /><br /><br />
+    <input type="submit" name="name" class="btn btn-primary" style="margin-left:457px;" value="kaydet" />
+</form>

@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Filmsayt.Models.tbl_yorum>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    
+
+@foreach (var item in Model) {
+    <tr>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.tbl_kullanici.adi)
+        </td>
+        <td>
+            <span>@Html.DisplayFor(modelItem => item.yorumicerik)</span>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tarix)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.istifadeci)
+        </td>
+       
+    </tr>
+}
+
+</table>

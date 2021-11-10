@@ -1,0 +1,417 @@
+﻿@model IEnumerable<Filmsayt.Models.tbl_kategoriya>
+<link href="~/Content/search.css" rel="stylesheet" />
+<link href="~/Content/username.css" rel="stylesheet" />
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="~/Content/morphing-modal-window-master/css/reset.css"> <!-- CSS reset -->
+<link rel="stylesheet" href="~/Content/morphing-modal-window-master/css/style.css"> <!-- Resource style -->
+
+
+
+<link rel="icon" type="image/png" href="~/Content/Login_v1/Login_v1/images/icons/favicon.ico" />
+<!--===============================================================================================-->
+
+<link rel="stylesheet" type="text/css" href="~/Content/Login_v1/Login_v1/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="~/Content/Login_v1/Login_v1/vendor/animate/animate.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="~/Content/Login_v1/Login_v1/vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="~/Content/Login_v1/Login_v1/vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="~/Content/Login_v1/Login_v1/css/util.css">
+<link rel="stylesheet" type="text/css" href="~/Content/Login_v1/Login_v1/css/main.css">
+
+
+
+
+
+
+<script src="~/Content/morphing-modal-window-master/js/modernizr.js"></script> <!-- Modernizr -->
+<link href="~/Content/saa.css" rel="stylesheet" />
+
+
+
+<script src="~/Content/morphing-modal-window-master/js/jquery-2.1.1.js"></script>
+<script src="~/Content/morphing-modal-window-master/js/velocity.min.js"></script>
+<script src="~/Content/morphing-modal-window-master/js/main.js"></script> <!-- Resource jQuery -->
+
+<nav class="navbar navbar-default navbar-custom">
+    <div class="collapse navbar-collapse flex-parent" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav flex-child-menu menu-left">
+            <li><h2 style="color:white;margin-right:50px;">TURABBL</h2></li>
+            <li class="hidden">
+                <a href="#page-top"></a>
+            </li>
+            <li><a href="/Home/Index">Ana Sehife</a></li>
+            <li class="dropdown first">
+                <a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown">
+                    Kategoriyalar <i class="fa fa-angle-down" aria-hidden="true"></i>
+                </a>
+
+                <ul class="dropdown-menu level1">
+                    @foreach (var item in Model)
+                    {
+                        <li><a href="/Home/KategoriyaFilm/@item.id">@item.kategoriyaadi</a></li>
+                    }
+                </ul>
+
+
+            </li>
+
+
+            <li class="dropdown first">
+                <a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown" data-hover="dropdown">
+                    Filmlər<i class="fa fa-angle-down" aria-hidden="true"></i>
+                </a>
+                <ul class="dropdown-menu level1">
+                    <li class="dropdown">
+                    <li><a href="/Home/Xosunuz">Xoşunuza Gılə Biləcək Filmlər</a></li>
+                    <li><a href="/Home/Navencox">Ən Çox Baxılanlar</a></li>
+                    <li><a href="/Home/Navimdb">İMDB -yə Görə Qİymətləndirilənlər</a></li>
+
+                </ul>
+            </li>
+            <li>
+                <div style="margin-top:20px;">
+                    <form action="/Home/Axtar" class="formm" method="get">
+                        <input type="search" class="inputt" name="searcing">
+                        <i class="fa fa-search"></i>
+                    </form>
+                </div>
+            </li>
+
+
+        </ul>
+        <ul class="nav navbar-nav flex-child-menu menu-right">
+            <li class="dropdown first">
+                <a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown" data-hover="dropdown">
+                    Əlaqə <i class="fa fa-angle-down" aria-hidden="true"></i>
+                </a>
+                <ul class="dropdown-menu level1">
+                    <li><a href="landing.html">Mail</a></li>
+                    <li><a href="404.html">Telefon</a></li>
+
+                </ul>
+            </li>
+            <li><a href="#">Kömək</a></li>
+            @if (Session["username"] == null)
+            {
+                <li><a href="/Home/Qeydiyyat">Qeydiyyat</a></li>
+
+
+            }
+
+
+            @if (Session["username"] == null)
+            {
+
+                <section class="cd-section">
+
+                    <div class="cd-modal-action">
+                        <a href="#0" class="btn" data-type="modal-trigger" style="background-color:#a31e1e;width:140px;height:70px;"><p style="text-align:center;font-size:30px;font-family:Forte;margin-top:20px;color:white">Giriş Et</p></a>
+                        <span class="cd-modal-bg"></span>
+                    </div>
+                    <div class="cd-modal" style="background-image:linear-gradient(#b4091b,#a82424,#750e0e);margin-bottom:300px;">
+                        <div class="cd-modal-content" >
+                            <div class="limiter">
+                                <div class="container-login100">
+                                    <div class="wrap-login100" style="margin-bottom:900px;">
+                                        <div class="login100-pic js-tilt" data-tilt>
+                                            <img src="~/Content/Login_v1/Login_v1/images/img-01.png" alt="IMG">
+                                        </div>
+
+                                        <form  class="login100-form validate-form" method="post" action="/Home/Giris">
+                                            <span style="font-size:30px;" class="login100-form-title">
+                                               Giriş Et
+                                            </span>
+
+                                            <div class="wrap-input100 validate-input" data-validate="Yazı Örnəyi: ex@abc.xyz">
+                                                <input class="input100" style="background-color:#e6e6e6;border-width:0px;height:50px;" type="text" name="istifadeciadi" placeholder="İstifadəçi Adı">
+                                                <span class="focus-input100"></span>
+                                                <span class="symbol-input100">
+                                                    <i class="fa fa-envelope" style="margin-top:8px;" aria-hidden="true"></i>
+                                                </span>
+                                            </div>
+
+                                            <div class="wrap-input100 validate-input" data-validate="Şifrə Boş Buraxila Bilməz">
+                                                <input class="input100" style="background-color:#e6e6e6;border-width:0px;height:50px;" type="password" name="sifre" placeholder="Şifrə">
+                                                <span class="focus-input100"></span>
+                                                <span class="symbol-input100">
+                                                    <i class="fa fa-lock" style="margin-top:8px;"  aria-hidden="true"></i>
+                                                </span>
+                                            </div>
+
+                                            <div class="container-login100-form-btn">
+                                                <button type="submit" class="login100-form-btn">
+                                                        Giriş
+                                                    </button>
+    
+                                                </div>
+    
+
+                                                <div class="text-center p-t-12">
+                                                <span class="txt1">
+                                                   Unutmusan
+                                                </span>
+                                                <a class="txt2" href="#">
+                                                    İstifadəçi Adı / Şifrə?
+                                                </a>
+                                            </div>
+
+                                            <div class="text-center p-t-136">
+                                                <a class="txt2" href="/Home/Qeydiyyat">
+                                                    Yeni Hesab Aç -->
+                                                    <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+                                                </a>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <a href="#0" class="cd-modal-close">Close</a>
+                </section>
+
+            }
+
+            @if (Session["username"] != null)
+            {
+                <li><a href="/Home/Logout">Cixis Et</a></li>
+            }
+
+            @if (Session["username"] != null)
+            {
+                <div class="neon">
+                    <span class="text" data-text="@Session["username"].ToString()">@Session["username"].ToString()</span>
+                    <span class="gradient"></span>
+                    <span class="spotlight"></span>
+                </div>
+            }
+        </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+</nav>
+<script src="~/Content/Login_v1/Login_v1/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+<script src="~/Content/Login_v1/Login_v1/vendor/bootstrap/js/popper.js"></script>
+<script src="~/Content/Login_v1/Login_v1/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+<script src="~/Content/Login_v1/Login_v1/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+<script src="~/Content/Login_v1/Login_v1/vendor/tilt/tilt.jquery.min.js"></script>
+<script>
+    $('.js-tilt').tilt({
+        scale: 1.1
+    })
+</script>
+<style>
+
+
+
+
+    .color-3 {
+        stroke: #05ffa1;
+        transform: translate3d(2px, 2px, 0);
+        stroke-width: 6px;
+    }
+
+    .color-1 {
+        stroke: #ffffff;
+        stroke-width: 8px;
+    }
+
+    .color-2 {
+        stroke: #01cdfe;
+        transform: translate3d(2px, 2px, 0);
+        stroke-width: 8px;
+        z-index: 9999;
+    }
+
+    /* Main SVG */
+
+    .letters {
+        left: 50%;
+        transform: translateX(-50%);
+        position: relative;
+        stroke-miterlimit: 3;
+        fill: none;
+        top: 20px;
+        display: block;
+        min-height: 400px;
+        max-height: 70vh;
+        margin: 0 auto;
+        position: absolute;
+    }
+
+    /* Letter path */
+
+    .letter__layer {
+        fill: none;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    .button {
+        border: 2px solid #324b6c;
+        cursor: pointer;
+        letter-spacing: 0.2125rem;
+        overflow: hidden;
+        width: 150px;
+        padding: 10px 10px;
+        position: relative;
+        text-align: center;
+        text-transform: uppercase;
+        transition: background 5s cubic-bezier(0.19, 1, 0.22, 1), border 1s cubic-bezier(0.19, 1, 0.22, 1), color 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+        user-select: none;
+    }
+
+        .button a {
+            color: #969696;
+            font-family: "Varela Round";
+            text-decoration: none;
+        }
+
+        .button .mask {
+            background-color: #fff;
+            background-color: rgba(255, 255, 255, 0.5);
+            height: 100px;
+            position: absolute;
+            transform: translate3d(-120%, -50px, 0) rotate3d(0, 0, 1, 45deg);
+            transition: all 1.1s cubic-bezier(0.19, 1, 0.22, 1);
+            width: 200px;
+        }
+
+        .button .shift {
+            display: inline-block;
+            transition: all 1.1s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .button:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-color: #fff;
+            box-shadow: 0 0 5px rgba(255, 245, 245, 0.8);
+            transition: background 0s;
+        }
+
+            .button:hover a {
+                color: #fff;
+            }
+
+            .button:hover .mask {
+                background-color: #fff;
+                transform: translate3d(120%, -100px, 0) rotate3d(0, 0, 1, 90deg);
+            }
+
+            .button:hover .shift {
+                transform: translateX(5px);
+            }
+
+        .button:active {
+            background-color: #fff;
+        }
+
+            .button:active a {
+                color: #202020;
+            }
+
+    body.show {
+        background-color: #282828;
+    }
+</style>
+<script>
+    var bounceIn = anime({
+        targets: '.letter__part',
+        translateY: {
+            value: [-30, 0],
+            duration: 900,
+            delay: 1000,
+            elasticity: 600,
+            easing: 'easeOutElastic'
+        },
+        opacity: {
+            value: [0, 1],
+            duration: 300,
+            easing: 'linear',
+            delay: 1000
+        }
+    });
+
+    var lineDrawing = anime({
+        targets: '.color-1',
+        strokeDashoffset: [anime.setDashoffset, 0],
+        easing: 'easeOutElastic',
+        duration: 4000,
+        delay: 1000,
+        loop: false,
+        direction: 'alternate',
+    });
+
+    var lineDrawing = anime({
+        targets: '.color-3',
+        strokeDashoffset: [anime.setDashoffset, 0],
+        easing: 'easeOutElastic',
+        duration: 4000,
+        delay: 1200,
+        loop: false,
+        direction: 'alternate',
+    });
+
+    var lineDrawing = anime({
+        targets: '.color-2',
+        strokeDashoffset: [anime.setDashoffset, 0],
+        easing: 'easeOutElastic',
+        duration: 4000,
+        delay: 1400,
+        loop: false,
+        direction: 'alternate',
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    const body = document.body;
+    const btn = document.querySelectorAll('.button')[0];
+
+    btn.addEventListener('mouseenter', () => {
+        body.classList.add('show');
+    });
+
+    btn.addEventListener('mouseleave', () => {
+        body.classList.remove('show');
+    });
+</script>

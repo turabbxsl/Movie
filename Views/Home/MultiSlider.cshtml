@@ -1,0 +1,23 @@
+﻿
+@model IEnumerable<Filmsayt.Models.tbl_kinolar>
+
+<div class="slick-multiItemSlider">
+    @foreach (var item in Model)
+    {
+    <div class="movie-item">
+        <div class="mv-img">
+            <a href="/Home/Details/@item.id"><img src="@item.tbl_resm1.FirstOrDefault(x => x.varsayilan == true).ortaolculu" alt="" width="285" height="437"></a>
+        </div>
+        <div class="hvr-inner">
+            <a href="/Home/Details/@item.id">Ətraflı Bax<i class="ion-android-arrow-dropright"></i> </a>
+        </div>
+        <div class="title-in">
+            <div class="cate">
+                <span class="blue"><a href="#">@item.tbl_kategoriya.kategoriyaadi</a></span>
+            </div>
+            <h6><a href="/Home/Details/@item.id">@item.kinoadi</a></h6>
+            <p><i class="ion-android-star"></i><span>@item.reyting</span> /10</p>
+        </div>
+    </div>
+    }
+</div>

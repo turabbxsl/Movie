@@ -1,0 +1,51 @@
+﻿
+@model IEnumerable<Filmsayt.Models.tbl_kinolar>
+
+@helper IcerikQisalt(string icerik)
+{
+
+    if (icerik.Length > 600)
+    {
+        @icerik.Substring(0, 1000);
+    }
+    else
+    {
+        @icerik;
+    }
+
+
+}
+
+<div class="topbar-filter">
+    <p style="margin-left:20px;"><span>@Model.Count() Film</span>        Tapıldı</p>
+
+
+</div>
+@foreach (var item in Model)
+{
+    <div class="movie-item-style-2">
+        <img src="@item.tbl_resm1.FirstOrDefault(x => x.varsayilan == true).kicikolculu" alt="">
+        <div class="mv-item-infor">
+            <h6><a href="#" >@item.kinoadi<span><span style="margin-left:20px;">   </span>@Convert.ToDateTime(item.tarix).ToShortDateString()</span></a></h6>
+            <p class="rate"><i class="ion-android-star"></i><span>@item.reyting</span> /10</p>
+            <p class="describe" style="margin-right:30px;color:white">@IcerikQisalt(item.kinoaciqlama) ...<a href="/Home/Details/@item.id">Ətraflı Bax</a></p>
+            <p class="run-time" style="color:whitesmoke;margin-right:300px;">Müddət: 2h21<span style="color:whitesmoke;">Çıxış Tarixi:@Convert.ToDateTime(item.tarix).ToShortDateString()</span></p>
+            <p style="color:whitesmoke;margin-right:365px;">Rejissor: <a href="#">@item.yonetmenadi</a></p>
+            <p style="color:whitesmoke;margin-right:40px;">Ulduzlar: <a href="#">@item.oyuncuadi</a></p>
+        </div>
+
+    </div>
+    <br />
+    <br />
+    <br />
+
+}
+
+<div class="topbar-filter">
+    <label>Səhifədə Göstər:</label>
+    <select>
+        <option value="range">5 Movies</option>
+        <option value="saab">10 Movies</option>
+    </select>
+
+</div>

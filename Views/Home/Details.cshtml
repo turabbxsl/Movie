@@ -1,0 +1,863 @@
+﻿@model Filmsayt.Models.tbl_kinolar
+
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/SaytLayout.cshtml";
+}
+
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<hr />
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<link rel="stylesheet" href="~/Content/video/css/videre.css" />
+<link rel="stylesheet" href="~/Content/video/tests/css/app.css" />
+<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/fonts/ionicons.eot">
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="~/Content/video//js/videre.js"></script>
+<link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+
+<script>
+    $(document).ready(function myfunction() {
+        $(".ion-eye").ready(function myfunction() {
+
+            function Goruntulendi(ID) {
+
+                var id = $(this).data("id");
+                ID = id;
+                var link = "Home/Goruntulendi/" + id;
+                $.ajax({
+                    type: "GET",
+                    url: link,
+                    success: function myfunction(result) {
+                        $(".ion-eye").html(result);
+                    }
+                });
+            }
+        });
+    })
+
+    $(document).ready(function myfunction() {
+        $("a.begen").click(function myfunction() {
+            var id = $(this).data("id");
+            $("#loginbtn").attr('disabled', 'disabled');
+            $("a.begen").addClass("ion-heart").removeClass("ion-heart-broken");
+            var link = "/Home/Begen/" + id;
+            const btn = document.querySelector('#loginbtn');
+            
+
+            $.ajax({
+                type: "GET",
+                url: link,
+                success: function (result) {
+                    $("a.begen").html(result);                 
+                }  
+                
+            });           
+        });
+    });
+
+
+    $(document).ready(function myfunction() {
+        $("a.begenme").click(function myfunction() {
+            var id = $(this).data("id");
+
+            var link = "/Home/Begenme/" + id;
+            $.ajax({
+                type: "GET",
+                url: link,
+                success: function (result) {
+                    $("a.begenme").html(result);
+
+                }
+            });
+        });
+    });
+</script>
+
+
+
+
+
+
+
+<div class="page-single movie-single movie_single">
+    <div class="container">
+        <div class="row ipad-width2">
+            <div class="col-md-4 col-sm-12 col-xs-12">
+                <div class="movie-img sticky-sb">
+                    <img src="@Model.tbl_resm1.FirstOrDefault(x => x.varsayilan == true).boyukolculu" alt="">
+                    <div class="movie-btn">
+                        <div class="btn-transform transform-vertical red">
+                            <div><a href="#" class="item item-1 redbtn"> <i class="ion-play"></i>Fragman İzlə</a></div>
+                            <div><a href="https://www.youtube.com/embed/o-0hcF97wy0" class="item item-2 redbtn fancybox-media hvr-grow"><i class="ion-play"></i></a></div>
+
+                        </div>
+                        <div class="btn-transform" >
+                            <div><a href="#" class="item item-1 redbtn" id="loginbtn" > <i class="ion-heart" ></i> @Model.begen Bəyənilmə Sayı</a></div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 col-sm-12 col-xs-12">
+                <div class="movie-single-ct main-content">
+                    <h1 class="bd-hd">@Model.kinoadi<span style="margin-left:90px;">@Convert.ToDateTime(Model.tarix).ToShortDateString()</span></h1>
+                    <div class="social-btn">
+
+
+
+                        <a href="javascript:void(0);" style="font-size:17px;margin-left:-20px;color:#bd4e4e" class="parent-btn begen" data-id="@Model.id">
+                            <i class="ion-heart"></i>Begen
+                        </a>
+
+
+
+
+
+
+
+
+
+                        <a href="#" class="parent-btn"><i class="ion-eye"></i><span style="font-size:25px;margin-left:8px;color:#bd4e4e">@Model.goruntulenme</span>          <span style="margin-left:20px;">Görüntülənmə</span></a>
+
+                        <div class="hover-bnt">
+                            <a href="#" class="parent-btn"><i class="ion-android-share-alt"></i>Paylaş</a>
+
+                            <div class="hvr-item">
+                                <a href="#" class="hvr-grow"><i class="ion-social-facebook"></i></a>
+                                <a href="#" class="hvr-grow"><i class="ion-social-twitter"></i></a>
+                                <a href="#" class="hvr-grow"><i class="ion-social-googleplus"></i></a>
+                                <a href="#" class="hvr-grow"><i class="ion-social-youtube"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="movie-rate" style="border-width:0px;">
+                        <div class="rate">
+                            <i class="ion-android-star"></i>
+                            <p>
+                                <span>@Model.reyting</span> /10<br>
+                                <span class="rv">Yorum Sayı  (@Model.tbl_yorum.Where(x => x.yorumfilmid == Model.id).Count()) </span>
+                            </p>
+                        </div>
+
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <!-- Plyr resources and browser polyfills are specified in the pen settings -->
+                    <link href="~/Content/meee/plugin/back-forward-buttons.css" rel="stylesheet" />
+
+
+            <video id="myPlayerID"
+                   data-video-id="5992439742001"
+                   data-account="1752604059001"
+                   data-player="default"
+                   data-embed="default"
+                   data-application-id
+                   class="video-js"
+                   controls
+                   width="640" height="360" >
+                <source src="~/Content/Death Stranding Soundtrack - Asylums for the Feeling feat. Leila Adu.mp4"/>
+            </video>
+            <script src="//players.brightcove.net/1752604059001/default_default/index.min.js"></script>
+
+            <script>
+                videojs.getPlayer('myPlayerID').ready(function () {
+                    var myPlayer = this;
+                    myPlayer.backForwardButtons();
+                });
+            </script>
+
+
+
+            <script src="~/Content/meee/plugin/back-forward-buttons.js"></script>
+
+
+            <style>
+                #backButton img {
+                    margin-top: -7px;
+                    height: 45px;
+                    width: 45px;
+                    cursor: pointer;
+                }
+
+                #forwardButton img {
+                    margin-top: -7px;
+                    height: 45px;
+                    width: 45px;
+                    cursor: pointer;
+                }
+            </style>
+
+
+
+
+
+
+
+                    @*
+
+            <link href="https://vjs.zencdn.net/7.6.0/video-js.css" rel="stylesheet"/>
+             <div class="c-video" @*class="video-js" data-setup="{}" id="videopanel">
+                    <video class="video" id="myVideo" muted controls poster="https://picsum.photos/800/450">
+                        <source src="~/Content/Death Stranding Soundtrack - Asylums for the Feeling feat. Leila Adu.mp4" type="video/mp4" />
+                    </video>
+
+                    <div id="controls" style="height:50px;">
+                        <div id="seek-bar">
+                            <div id="fill"></div>
+                        </div>
+                        <table>
+                            <tr>
+                                <td width="20%">
+                                    <div id="currentTime">00:00 / 00:00</div>
+                                </td>
+
+                                <td width="10%" style="text-align:center;">
+                                    <img style="margin-left:40px;" src="~/Content/mediaplayer/iconfinder_backward_375748 (1).png" id="back" />
+                                </td>
+
+
+
+                                <td width="20%" style="text-align:center;">
+                                    <img style="margin-left:40px;" src="~/Content/mediaplayer/ppppp.png" onclick="playorpause()" id="playBtn" />
+                                </td>
+
+
+                                <td width="10%" style="text-align:center;">
+                                    <img style="margin-left:40px;" src="~/Content/mediaplayer/iconfinder_forward_375745 (1).png" id="for" />
+                                </td>
+
+
+
+                                <td width="10%">
+                                    <img src="~/Content/mediaplayer/Speaker.png" style="margin-left:40px;" id="speaker" />
+                                </td>
+                                <td width="10%">
+                                    <input type="range" id="volume" min="0" max="1" value="0.40" step="0.20" onchange="changeVolume()" />
+                                </td>
+                                <td width="10%">
+                                    <img src="~/Content/mediaplayer/iconfinder_Internet_Security_fullscreen_expand_arrow_full_screen_5172978.png" style="margin-left:40px;" id="full" />
+                                </td>
+
+
+                            </tr>
+                        </table>
+                    </div>
+
+                </div>
+
+                <style>
+                    #currentTime {
+                        font-family: monospace;
+                        font-size: 14px;
+                        color: #e4ecbf;
+                    }
+
+                    #playBtn {
+                        cursor: pointer;
+                    }
+
+                    input[type=range] {
+                        -webkit-appearance: none !important;
+                        background-color: #e4ecbf;
+                        height: 4px;
+                        width: 70px;
+                        border-radius: 4px;
+                        outline: none;
+                        margin-right: 100px;
+                    }
+
+                        input[type=range]::-webkit-slider-thumb {
+                            -webkit-appearance: none !important;
+                            background-color: #dba74a;
+                            height: 12px;
+                            width: 12px;
+                            border-radius: 15px;
+                            cursor: pointer;
+                        }
+
+                    #fill {
+                        height: 6px;
+                        background-color: #ffffff;
+                    }
+
+                    #controls {
+                        display: flex;
+                        position: absolute;
+                        bottom: 0;
+                        width: 100%;
+                        flex-wrap: wrap;
+                        background: rgba(0,0,0,0.57);
+                        transform: translateY(100%) translateY(-5px);
+                        transition: all .3s;
+                    }
+
+                    .c-video:hover #controls {
+                        transform: translateY(0);
+                    }
+
+                    #seek-bar {
+                        width: 100%;
+                        height: 6px;
+                        background-color: #bbd21f;
+                        display: flex;
+                        position: absolute;
+                        top: 0px;
+                        left: 0px;
+                    }
+
+
+
+
+
+
+
+                    .orange-juice {
+                        height: 10px;
+                        background-color: #b4ac44;
+                    }
+
+                    .orange-bar {
+                        height: 10px;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        background: black;
+                    }
+
+                    .buttonsss {
+                        padding: 8px;
+                    }
+
+                        .buttonsss button.play:before {
+                            content: '\f144';
+                        }
+
+                        .buttonsss button.pause:before {
+                            content: '\f28b';
+                        }
+
+                        .buttonsss button:before {
+                            content: '\f144';
+                            font-family: 'Font Awesome 5 Free';
+                            width: 30px;
+                            height: 30px;
+                            display: inline-block;
+                            font-size: 24px;
+                            color: white;
+                            -webkit-font-smoothing: antialiased;
+                        }
+
+                        .buttonsss button {
+                            background: none;
+                            border: 0;
+                            outline: 0;
+                            cursor: pointer;
+                        }
+
+                    .controls {
+                        display: flex;
+                        position: absolute;
+                        bottom: 0;
+                        width: 100%;
+                        flex-wrap: wrap;
+                        background: rgba(0,0,0,0.57);
+                        transform: translateY(100%) translateY(-5px);
+                        transition: all .2s;
+                    }
+
+                    .video {
+                        width: 1510px;
+                    }
+
+                    .c-video:hover .controls {
+                        transform: translateY(0);
+                    }
+
+                    .c-video {
+                        max-width: 700px;
+                        position: relative;
+                        overflow: hidden;
+                    }
+                </style>
+
+                <script src='https://https://vjs.zencdn.net/7.6.0/video.js'></script>
+                <script>
+
+
+
+                    var vid = document.getElementById("myVideo");
+
+                    var fillbar = document.getElementById("fill");
+
+                    var currentTime = document.getElementById("currentTime");
+
+                    var volumeslider = document.getElementById("volume");
+
+                    var fullscreen = document.getElementById('full');
+
+
+
+                    var fullScreenEnabled = !!(document.fullscreenEnabled || document.mozFullScreenEnabled || document.msFullscreenEnabled || document.webkitSupportsFullscreen || document.webkitFullscreenEnabled || document.createElement("video").webkitRequestFullScreen);
+
+                    if (!fullScreenEnabled) {
+                        fullscreen.style.display = "none";
+                    }
+
+                    fullscreen.addEventListener("click", function (e) {
+                        handleFullscreen();
+                    });
+
+
+
+                    var handleFullscreen = function () {
+                        if (isFullScreen()) {
+                            if (document.exitFullscreen) document.exitFullscreen();
+                            else if (document.mozCancelFullScreen) document.mozCancelFullScreen();
+                            else if (document.webkitCancelFullScreen) document.webkitCancelFullScreen();
+                            else if (document.msExitFullscreen) document.msExitFullscreen();
+                            setFullscreenData(false);
+                        }
+                        else {
+                            if (videopanel.requestFullscreen) videopanel.requestFullscreen();
+                            else if (videopanel.mozRequestFullScreen) videopanel.mozRequestFullScreen();
+                            else if (videopanel.webkitRequestFullScreen) videopanel.webkitRequestFullScreen();
+                            else if (videopanel.msRequestFullscreen) videopanel.msRequestFullscreen();
+                            setFullscreenData(true);
+                        }
+                    }
+
+                    var isFullScreen = function () {
+                        return !!(document.fullScreen || document.webkitIsFullScreen || document.mozFullScreen || document.msFullscreenElement || document.fullscreenElement);
+                    }
+
+                    var setFullscreenData = function (state) {
+                        videopanel.setAttribute('data-fullscreen', !!state);
+                    }
+
+
+                    document.addEventListener('fullscreenchange', function (e) {
+                        setFullscreenData(!!(document.fullScreen || document.fullscreenElement));
+                    });
+                    document.addEventListener('webkitfullscreenchange', function () {
+                        setFullscreenData(!!document.webkitIsFullScreen);
+                    });
+                    document.addEventListener('mozfullscreenchange', function () {
+                        setFullscreenData(!!document.mozFullScreen);
+                    });
+                    document.addEventListener('msfullscreenchange', function () {
+                        setFullscreenData(!!document.msFullscreenElement);
+                    });
+
+
+
+
+                    function playorpause() {
+                        if (vid.paused) {
+                            vid.play();
+                            $("#playBtn").attr("src", "/Content/mediaplayer/pause.png");
+                        }
+                        else {
+                            vid.pause();
+                            $("#playBtn").attr("src", "/Content/mediaplayer/ppppp.png");
+                        }
+                    };
+
+                    vid.addEventListener('timeupdate', function () {
+                        var position = vid.currentTime / vid.duration;
+                        fillbar.style.width = position * 100 + '%';
+                        convertTime(Math.round(vid.currentTime));
+
+                        if (vid.ended) {
+                            $("#playBtn").attr("src", "/Content/mediaplayer/ppppp.png");
+                        }
+                    });
+                    function convertTime(seconds) {
+                        var min = Math.floor(seconds / 60);
+                        var sec = seconds % 60;
+
+                        min = (min < 10) ? "0" + min : min;
+                        sec = (sec < 10) ? "0" + sec : sec;
+                        currentTime.textContent = min + ":" + sec;
+
+                        totalTime(Math.round(vid.duration))
+                    }
+                    function totalTime(seconds) {
+                        var min = Math.floor(seconds / 60);
+                        var sec = seconds % 60;
+
+                        min = (min < 10) ? "0" + min : min;
+                        sec = (sec < 10) ? "0" + sec : sec;
+                        currentTime.textContent += "/" + min + ":" + sec;
+                    }
+
+                    function changeVolume() {
+                        vid.volume = volumeslider.value;
+                        if (volumeslider.value == 0) {
+                            $("#speaker").attr("src", "/Content/mediaplayer/mute.png");
+                        }
+                        else {
+                            $("#speaker").attr("src", "/Content/mediaplayer/Speaker.png");
+                        }
+                    }
+
+                    $("#speaker").click(function () {
+                        $("#speaker").attr("src", "/Content/mediaplayer/mute.png")
+
+                    })
+
+
+
+
+
+
+
+
+
+                    //var video = document.querySelector(".video");
+                    //var juice = document.querySelector(".orange-juice");
+                    //var bttnn = document.getElementById("play-pause");
+
+                    //function togglePlayPause() {
+                    //    if (video.paused) {
+                    //        bttnn.className = "pause";
+                    //        video.play();
+                    //    }
+                    //    else
+                    //    {
+                    //        bttnn.className = "play";
+                    //        video.pause();
+                    //    }
+                    //}
+
+                    //bttnn.onclick = function() {
+                    //    togglePlayPause();
+                    //};
+
+                    //video.addEventListener("timeupdate", function() {
+                    //    var juicePos = video.currentTime / video.duration;
+                    //    juice.style.width = juicePos * 100 + "%";
+                    //});
+                </script>
+                *@
+
+
+
+                <div class="movie-tabs">
+                    <div class="tabs" style="margin-right:15px;">
+                        <ul class="tab-links tabs-mv">
+                            <li class="active"><a href="#overview">Əsas Görünüm</a></li>
+
+
+                            <li><a href="#moviesrelated">Bənzər Filmlər</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div id="overview" class="tab active">
+                                <div class="row">
+                                    <div class="col-md-8 col-sm-12 col-xs-12">
+                                        <p style="color:white;">@Model.kinoaciqlama</p>
+
+
+
+                                        <div class="title-hd-sm">
+                                            <h4>Oyunçular</h4>
+                                            <a href="#" class="time">Tam Heyət<i class="ion-ios-arrow-right"></i></a>
+                                        </div>
+                                        <!-- movie cast -->
+                                        <div class="mvcast-item">
+                                            <div class="cast-it">
+                                                <div class="cast-left">
+
+                                                    <a href="#">@Model.oyuncuadi</a>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-xs-12 col-sm-12">
+                                        <div class="sb-it">
+                                            <h6>Rejissor: </h6>
+                                            <p><a href="#">@Model.yonetmenadi</a></p>
+                                        </div>
+
+                                        <div class="sb-it">
+                                            <h6>Ulduzları: </h6>
+                                            <p><a href="#">@Model.oyuncuadi</a></p>
+                                        </div>
+                                        <div class="sb-it">
+                                            <h6>Kategoriyası:</h6>
+                                            <p><a href="#">@Model.tbl_kategoriya.kategoriyaadi</a></p>
+                                        </div>
+                                        <div class="sb-it">
+                                            <h6>Tarix: </h6>
+                                            <p><a href="#">@Convert.ToDateTime(Model.tarix).ToShortDateString()</a></p>
+                                        </div>
+                                        <div class="sb-it">
+                                            <h6>Ulduzları: </h6>
+                                            <p><a href="#">1 saat 49 deqiqe</a></p>
+                                        </div>
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="sb-it">
+                                <h6 style="margin-right:265px;font-size:17px;">Etiket</h6>
+                                <p style="margin-right:290px;" class="tags">
+                                    <span class="time"><a href="#">superhero</a></span>
+                                    <span class="time"><a href="#">marvel universe</a></span>
+                                    <span class="time"><a href="#">comic</a></span>
+                                    <span class="time"><a href="#">blockbuster</a></span>
+                                    <span class="time"><a href="#">final battle</a></span>
+                                </p>
+                            </div>
+
+                            <div id="moviesrelated" class="tab">
+                                <div class="row">
+
+                                    @Html.Partial("Benzer", Model.tbl_kategoriya.tbl_kinolar.ToList());
+
+                                </div>
+                            </div>
+
+
+
+
+                            <div style="margin-right:260px;" class="title-hd-sm">
+
+                            </div>
+                            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
+
+
+
+                            <form method="post" action="/Home/Yorumyaz/@Model.id">
+
+
+
+
+
+                                <div>
+                                    @if (Session["username"] == null)
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        @Html.TextArea("istifadeci", new { @class = "scrollbar", style = "width:470px;height:50px;background-color:#18465f;border-top:0px;border-left:0px;border-right:0px;resize:none;font-size:20px;color:white;border-radius:20px;border-width:0px;box-shadow:2px 2px 9px 4px #597eb5;box-sizing:border-box;", placeholder = "Adiniz" })
+                                        <br />
+
+                                    }
+
+
+
+                                    @Html.AntiForgeryToken()
+                                    @Html.TextArea("yorum", new { @class = "scrollbar", style = "width:470px;height:250px;background-color:#18465f;border-top:0px;border-left:0px;border-right:0px;resize:none;font-size:20px;color:white;border-radius:20px;border-width:0px;box-shadow:2px 2px 9px 4px #597eb5;box-sizing:border-box;", placeholder = "Yorumunuzu Bura Yazın" })
+                                    <br />
+                                    <br />
+                                    <br />
+
+                                    <p style="font-size:22px;color:white;margin-right:280px;font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">Bu Fİlmə 10 Üzərindən Xalını Ver</p>
+                                    <br />
+                                    <div class="movie-rate" style="border-width:0px;">
+                                        <div class="rate-star" style="border-width:0px;">
+                                            <i class="ratingStar ion-ios-star-outline" data-value="1"></i>
+                                            <i class="ratingStar ion-ios-star-outline" data-value="2"></i>
+                                            <i class="ratingStar ion-ios-star-outline" data-value="3"></i>
+                                            <i class="ratingStar ion-ios-star-outline" data-value="4"></i>
+                                            <i class="ratingStar ion-ios-star-outline" data-value="5"></i>
+                                            <i class="ratingStar ion-ios-star-outline" data-value="6"></i>
+                                            <i class="ratingStar ion-ios-star-outline" data-value="7"></i>
+                                            <i class="ratingStar ion-ios-star-outline" data-value="8"></i>
+                                            <i class="ratingStar ion-ios-star-outline" data-value="9"></i>
+                                            <i class="ratingStar ion-ios-star-outline" data-value="9"></i>
+                                        </div>
+                                    </div>
+
+
+
+
+
+                                    <input type="hidden" id="raytingsValue" name="rayting" />
+
+                                    @*<input type="submit" name="name" value="Yaz" />*@
+
+
+                                    <div class="button_cont" align="center">
+                                        <input type="submit" style="width:200px;border-radius:10px;margin-left:20px;font-size:24px;" class="example_c" name="name" value="Göndər" />
+                                    </div>
+
+                                    <br />
+
+
+                                    <div style="margin-right:260px;" class="title-hd-sm">
+
+                                    </div>
+                                    <br />
+                                    <br />
+
+
+
+
+                                </div>
+                            </form>
+
+
+                            @if (Model.tbl_yorum.Count() > 0)
+                            {
+                                @Html.Partial("Yorumlar", Model.tbl_yorum.ToList());
+                            }
+                            else
+                            {
+                                <p style="color:white;font-size:24px;font-family:Calibri;margin-right:240px;">Bu Film Üçün Yorum Edilməyib.İlk Yorumu Sən Yaz</p>
+                            }
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script>
+    //$(".ratingStar").hover(function myfunction() {
+    //    $(".ratingStar").addClass("far").removeClass("fas");
+
+
+    //    $(this).addClass("fas").removeClass("far");
+    //   $(this).prevAll(".ratingStar").addClass("fas").removeClass("far");
+    //});
+
+    //$(".ratingStar").click(function myfunction() {
+    //    debugger;
+    //    var starValue = $(this).attr("data-value");
+
+    //    $("#raytingsValue").val(starValue);
+    //});
+
+
+
+
+
+    $(".ratingStar").hover(function myfunction() {
+        $(".ratingStar").addClass("ion-ios-star-outline").removeClass("ion-ios-star");
+
+
+        $(this).addClass("ion-ios-star").removeClass("ion-ios-star-outline");
+        $(this).prevAll(".ratingStar").addClass("ion-ios-star").removeClass("ion-ios-star-outline");
+    });
+
+
+    $(".ratingStar").click(function myfunction() {
+        debugger;
+        var starValue = $(this).attr("data-value");
+
+        $("#raytingsValue").val(starValue);
+    });
+
+
+
+
+
+
+</script>
+<style>
+
+
+
+
+    .example_e {
+        border: none;
+        background: #18465f;
+        color: black !important;
+        font-weight: 100;
+        padding: 20px;
+        text-transform: uppercase;
+        border-radius: 6px;
+        display: inline-block;
+        transition: all 0.3s ease 0s;
+    }
+
+        .example_e:hover {
+            color: #404040 !important;
+            font-weight: 700 !important;
+            letter-spacing: 3px;
+            background: none;
+            -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+            -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+            transition: all 0.3s ease 0s;
+        }
+
+    .example_c {
+        color: #05457f !important;
+        text-transform: uppercase;
+        text-decoration: none;
+        background: #ffffff;
+        padding: 10px;
+        border: 4px solid #e8ecf5 !important;
+        display: inline-block;
+        transition: all 0.4s ease 0s;
+    }
+
+        .example_c:hover {
+            color: #ffffff !important;
+            background: #166a80;
+            border-color: #e8ecf5 !important;
+            transition: all 0.4s ease 0s;
+        }
+
+
+
+    ::-webkit-scrollbar {
+        width: 9px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: linear-gradient(transparent,#00c6ff);
+        border-radius: 6px;
+    }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(transparent,#27768d);
+            border-radius: 6px;
+        }
+
+</style>
